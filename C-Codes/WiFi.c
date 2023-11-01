@@ -25,7 +25,7 @@ void UART0_SendString(const char *str) {
     }
 }
 
-int sendJson(float accX, float accY, float accZ, float gyX, float gyY, float gyZ, float vib, float temp) {
+int sendJson(float accX, float accY, float accZ, float gyX, float gyY, float gyZ, float vib, float temp, bool accident) {
     PINSEL0 = 0x00000005;  // Configure UART0 pins
     UART0_Init();
 
@@ -38,14 +38,15 @@ int sendJson(float accX, float accY, float accZ, float gyX, float gyY, float gyZ
     // JSON data
     char json_data[128]; // Make sure the array is large enough to hold your JSON data
     snprintf(json_data, sizeof(json_data), "{\"accX\":\"%f\",
-        \"accY\":\"%f\",
+    \"accY\":\"%f\",
         \"accZ\":\"%f\",
         \"gyX\":\"%f\",
         \"gyY\":\"%f\",
         \"gyZ\":\"%f\",
         \"temp\":\"%f\",
         \"vib\":\"%f\",
-    }", accX, accY, accZ, gyX, gyY, gyZ, temp, vib);
+        \"accident\":\"%d\",
+    }", accX, accY, accZ, gyX, gyY, gyZ, temp, vib, accident);
     
     // Send JSON data to a server
     UART0_SendString("AT+CIPSTART=\"TCP\",\"your_server_ip\",your_server_port\r\n");
