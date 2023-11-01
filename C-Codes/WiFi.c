@@ -38,7 +38,7 @@ int sendJson(float accX, float accY, float accZ, float gyX, float gyY, float gyZ
     // JSON data
     char json_data[128]; // Make sure the array is large enough to hold your JSON data
     snprintf(json_data, sizeof(json_data), "{\"accX\":\"%f\",
-    \"accY\":\"%f\",
+\"accY\":\"%f\",
         \"accZ\":\"%f\",
         \"gyX\":\"%f\",
         \"gyY\":\"%f\",
