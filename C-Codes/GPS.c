@@ -31,7 +31,7 @@ void UART1_SendString(const char *str) {
     }
 }
 
-char main() {
+char *getGPS() {
     char gps_data[128]; // Make sure the array is large enough to hold GPS data
     char *gpgga_prefix = "$GPGGA,";
 
