@@ -6,9 +6,10 @@
   http://www.electronicwings.com/arm7/mpu6050-gyroscope-accelerometer-temperature-interfacing-with-lpc2148
 */
 
-#include <lpc214x.h>
-#include <stdint.h>
-#include <stdio.h>
+// #include <lpc214x.h>
+// #include <stdint.h>
+// #include <stdio.h>
+
 #define MPU_WRITE_ADDR 0xD0
 #define MPU_READ_ADDR 0xD1
 
