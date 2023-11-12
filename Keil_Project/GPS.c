@@ -1,4 +1,4 @@
-#include <lpc214x.h>
+
 void delay(unsigned int count) {
     unsigned int i;
     for (i = 0; i < count; i++) {

@@ -1,0 +1,94 @@
+<html>
+<body>
+<pre>
+<h1>µVision Build Log</h1>
+<h2>Tool Versions:</h2>
+IDE-Version: µVision V5.38.0.0
+Copyright (C) 2022 ARM Ltd and ARM Germany GmbH. All rights reserved.
+License Information: Siddhesh Thakare, COEP, LIC=UB4ES-59Y5L-KPTN1-VVEEQ-YXSRG-4KU79
+ 
+Tool Versions:
+Toolchain:       MDK-ARM Professional  Version: 5.38.0.0
+Toolchain Path:  C:\Keil_v5\ARM\ARM_Compiler_5.06u7\Bin
+C Compiler:      Armcc.exe V5.06 update 7 (build 960)
+Assembler:       Armasm.exe V5.06 update 7 (build 960)
+Linker/Locator:  ArmLink.exe V5.06 update 7 (build 960)
+Library Manager: ArmAr.exe V5.06 update 7 (build 960)
+Hex Converter:   FromElf.exe V5.06 update 7 (build 960)
+CPU DLL:         SARM.DLL V5.38.0.0
+Dialog DLL:      DARMP.DLL V1.54.1.0
+Target DLL:      UL2ARM.DLL V1.74.16.0
+Dialog DLL:      TARMP.DLL V1.54.1.0
+ 
+<h2>Project:</h2>
+E:\College\SEM_7\ESD_LAB\BlackBox_and_SOS_System\Keil_Project\proj.uvproj
+Project File Date:  11/12/2023
+
+<h2>Output:</h2>
+*** Using Compiler 'V5.06 update 7 (build 960)', folder: 'C:\Keil_v5\ARM\ARM_Compiler_5.06u7\Bin'
+Rebuild target 'Target 1'
+assembling Startup.s...
+compiling main.c...
+LM35.c(22): warning:  #223-D: function "initClocks" declared implicitly
+      initClocks(); // Set PCLK = CCLK = 60Mhz - used by: UART, Timer and ADC
+LM35.c(23): warning:  #223-D: function "initUART0" declared implicitly
+      initUART0();  // Initialize UART0 for retargeted printf()
+LM35.c(24): warning:  #223-D: function "initTimer0" declared implicitly
+      initTimer0(); // Init Timer for delay functions
+LM35.c(50): warning:  #223-D: function "delayMS" declared implicitly
+          delayMS(1000); // 1 Update per second
+LM35.c(74): warning:  #111-D: statement is unreachable
+      return temperature;
+main.c(15): warning:  #177-D: variable "thAX"  was declared but never referenced
+          float thAX, thAY, thAZ, thGX, thGY, thGZ, thTemp, thVib;
+main.c(15): warning:  #177-D: variable "thAY"  was declared but never referenced
+          float thAX, thAY, thAZ, thGX, thGY, thGZ, thTemp, thVib;
+main.c(15): warning:  #177-D: variable "thAZ"  was declared but never referenced
+          float thAX, thAY, thAZ, thGX, thGY, thGZ, thTemp, thVib;
+main.c(15): warning:  #177-D: variable "thGX"  was declared but never referenced
+          float thAX, thAY, thAZ, thGX, thGY, thGZ, thTemp, thVib;
+main.c(15): warning:  #177-D: variable "thGY"  was declared but never referenced
+          float thAX, thAY, thAZ, thGX, thGY, thGZ, thTemp, thVib;
+main.c(15): warning:  #177-D: variable "thGZ"  was declared but never referenced
+          float thAX, thAY, thAZ, thGX, thGY, thGZ, thTemp, thVib;
+main.c(15): warning:  #177-D: variable "thTemp"  was declared but never referenced
+          float thAX, thAY, thAZ, thGX, thGY, thGZ, thTemp, thVib;
+main.c(15): warning:  #177-D: variable "thVib"  was declared but never referenced
+          float thAX, thAY, thAZ, thGX, thGY, thGZ, thTemp, thVib;
+main.c(46): warning:  #111-D: statement is unreachable
+      return 1;
+main.c(48): warning:  #1-D: last line of file ends without a newline
+  }
+main.c: 15 warnings, 0 errors
+compiling LM35.c...
+..\C-Codes\LM35.c(74): warning:  #111-D: statement is unreachable
+      return temperature;
+..\C-Codes\LM35.c: 1 warning, 0 errors
+compiling lib_funcs.c...
+compiling GPS.c...
+..\C-Codes\GPS.c(45): warning:  #223-D: function "memset" declared implicitly
+              memset(gps_data, 0, sizeof(gps_data));
+..\C-Codes\GPS.c(55): warning:  #223-D: function "strncmp" declared implicitly
+                  if (i >= 7 && strncmp(gps_data + i - 7, "\r\n", 2) == 0) {
+..\C-Codes\GPS.c(62): warning:  #223-D: function "strncmp" declared implicitly
+              if (strncmp(gps_data, gpgga_prefix, strlen(gpgga_prefix)) == 0) {
+..\C-Codes\GPS.c(62): warning:  #223-D: function "strlen" declared implicitly
+              if (strncmp(gps_data, gpgga_prefix, strlen(gpgga_prefix)) == 0) {
+..\C-Codes\GPS.c(68): warning:  #223-D: function "sscanf" declared implicitly
+                  if (sscanf(gps_data, "$GPGGA,%*d.%*d,%10[^,],%*c,%11[^,],", latitude, longitude) == 2) {
+..\C-Codes\GPS.c(76): warning:  #111-D: statement is unreachable
+      return gps_data;
+..\C-Codes\GPS.c(76): warning:  #1166-D: returning pointer to local variable
+      return gps_data;
+..\C-Codes\GPS.c: 7 warnings, 0 errors
+linking...
+.\Objects\proj.axf: Error: L6200E: Symbol ReadTemperature multiply defined (by lm35.o and main.o).
+Not enough information to list image symbols.
+Not enough information to list load addresses in the image map.
+Finished: 2 information, 0 warning and 1 error messages.
+".\Objects\proj.axf" - 1 Error(s), 23 Warning(s).
+Target not created.
+Build Time Elapsed:  00:00:02
+</pre>
+</body>
+</html>

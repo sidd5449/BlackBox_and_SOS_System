@@ -1,0 +1,10 @@
+#include <lpc214x.h>
+#include <stdio.h>
+#include <string.h>
+#include <stdint.h>
+#include "lib_funcs.h"
+
+Steps to soleve the errors:
+add the includes and pin definitions to every file.
+
+check for return datatype and assign the same to the variables in main.c

@@ -1,8 +1,8 @@
 // Temperature reading using LM35
 
-#include <lpc214x.h>
-#include <stdio.h>     //visit http://www.ocfreaks.com/retarget-redirect-printf-scanf-uart-keil/
-#include "lib_funcs.h" //OCFreaks LPC214x Tutorials Library Header
+// #include <lpc214x.h>
+// #include <stdio.h>     //visit http://www.ocfreaks.com/retarget-redirect-printf-scanf-uart-keil/
+// #include "lib_funcs.h" //OCFreaks LPC214x Tutorials Library Header
 
 
 #define AD06 ((1 << 9) | (1 << 8)) // Select AD0.6 function for P0.4
