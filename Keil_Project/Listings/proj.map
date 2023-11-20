@@ -12,21 +12,70 @@ Section Cross References
     startup.o(.text) refers (Special) to heapauxi.o(.text) for __use_two_region_memory
     startup.o(.text) refers to startup.o(HEAP) for Heap_Mem
     startup.o(.text) refers to startup.o(STACK) for Stack_Mem
-    main.o(i.ReadTemperature) refers to _printf_percent.o(.ARM.Collect$$_printf_percent$$00000000) for _printf_percent
-    main.o(i.ReadTemperature) refers to _printf_f.o(.ARM.Collect$$_printf_percent$$00000003) for _printf_f
-    main.o(i.ReadTemperature) refers to printf1.o(x$fpl$printf1) for _printf_fp_dec
-    main.o(i.ReadTemperature) refers to lib_funcs.o(i.initClocks) for initClocks
-    main.o(i.ReadTemperature) refers to lib_funcs.o(i.initUART0) for initUART0
-    main.o(i.ReadTemperature) refers to lib_funcs.o(i.initTimer0) for initTimer0
-    main.o(i.ReadTemperature) refers to noretval__2printf.o(.text) for __2printf
-    main.o(i.ReadTemperature) refers to fflt_noclz.o(x$fpl$fflt) for __aeabi_i2f
-    main.o(i.ReadTemperature) refers to f2d.o(x$fpl$f2d) for __aeabi_f2d
-    main.o(i.ReadTemperature) refers to dmul.o(x$fpl$dmul) for __aeabi_dmul
-    main.o(i.ReadTemperature) refers to ddiv.o(x$fpl$ddiv) for __aeabi_ddiv
-    main.o(i.ReadTemperature) refers to d2f.o(x$fpl$d2f) for __aeabi_d2f
-    main.o(i.ReadTemperature) refers to lib_funcs.o(i.delayMS) for delayMS
-    main.o(i.main) refers to main.o(i.ReadTemperature) for ReadTemperature
-    main.o(i.main) refers to lm35.o(i.ReadTemperature) for ReadTemperature
+    gps.o(i.UART1_SendString) refers to gps.o(i.UART1_SendChar) for UART1_SendChar
+    gps.o(i.UART1_SendString) refers to main.o(i.UART1_SendChar) for UART1_SendChar
+    gps.o(i.getGPS) refers to _scanf_int.o(.text) for _scanf_int
+    gps.o(i.getGPS) refers to _scanf_str.o(.text) for _scanf_string
+    gps.o(i.getGPS) refers to gps.o(i.UART1_Init) for UART1_Init
+    gps.o(i.getGPS) refers to main.o(i.UART1_Init) for UART1_Init
+    gps.o(i.getGPS) refers to gps.o(i.UART1_ReadChar) for UART1_ReadChar
+    gps.o(i.getGPS) refers to main.o(i.UART1_ReadChar) for UART1_ReadChar
+    gps.o(i.getGPS) refers to rt_memclr_w.o(.text) for __aeabi_memclr4
+    gps.o(i.getGPS) refers to strncmp.o(.text) for strncmp
+    gps.o(i.getGPS) refers to strlen.o(.text) for strlen
+    gps.o(i.getGPS) refers to __0sscanf.o(.text) for __0sscanf
+    gsm.o(i.GSM_SendSMS) refers to gsm.o(i.tx_str) for tx_str
+    gsm.o(i.GSM_SendSMS) refers to main.o(i.tx_str) for tx_str
+    gsm.o(i.GSM_SendSMS) refers to gsm.o(i.tx) for tx
+    gsm.o(i.GSM_SendSMS) refers to main.o(i.tx) for tx
+    gsm.o(i.GSM_SendSMS) refers to gsm.o(i.gsm_delay) for gsm_delay
+    gsm.o(i.GSM_SendSMS) refers to main.o(i.gsm_delay) for gsm_delay
+    gsm.o(i.callingGSM_from_mainModule) refers to gsm.o(i.ser_init) for ser_init
+    gsm.o(i.callingGSM_from_mainModule) refers to main.o(i.ser_init) for ser_init
+    gsm.o(i.callingGSM_from_mainModule) refers to gsm.o(i.GSM_SendSMS) for GSM_SendSMS
+    gsm.o(i.callingGSM_from_mainModule) refers to main.o(i.GSM_SendSMS) for GSM_SendSMS
+    gsm.o(i.tx_str) refers to gsm.o(i.tx) for tx
+    gsm.o(i.tx_str) refers to main.o(i.tx) for tx
+    imu.o(i.I2C_MPU_CUSTOM) refers to imu.o(i.I2C_START) for I2C_START
+    imu.o(i.I2C_MPU_CUSTOM) refers to main.o(i.I2C_START) for I2C_START
+    imu.o(i.I2C_MPU_CUSTOM) refers to imu.o(i.I2C_WRITE) for I2C_WRITE
+    imu.o(i.I2C_MPU_CUSTOM) refers to main.o(i.I2C_WRITE) for I2C_WRITE
+    imu.o(i.I2C_MPU_CUSTOM) refers to imu.o(i.I2C_STOP) for I2C_STOP
+    imu.o(i.I2C_MPU_CUSTOM) refers to main.o(i.I2C_STOP) for I2C_STOP
+    imu.o(i.MPU_INIT) refers to imu.o(i.delay_ms) for delay_ms
+    imu.o(i.MPU_INIT) refers to main.o(i.delay_ms) for delay_ms
+    imu.o(i.MPU_INIT) refers to imu.o(i.I2C_MPU_CUSTOM) for I2C_MPU_CUSTOM
+    imu.o(i.MPU_INIT) refers to main.o(i.I2C_MPU_CUSTOM) for I2C_MPU_CUSTOM
+    imu.o(i.UART0_SendString) refers to imu.o(i.UART0_TxChar) for UART0_TxChar
+    imu.o(i.UART0_SendString) refers to main.o(i.UART0_TxChar) for UART0_TxChar
+    imu.o(i.readIMU) refers to _printf_percent.o(.ARM.Collect$$_printf_percent$$00000000) for _printf_percent
+    imu.o(i.readIMU) refers to _printf_f.o(.ARM.Collect$$_printf_percent$$00000003) for _printf_f
+    imu.o(i.readIMU) refers to _printf_c.o(.ARM.Collect$$_printf_percent$$00000013) for _printf_c
+    imu.o(i.readIMU) refers to printf1.o(x$fpl$printf1) for _printf_fp_dec
+    imu.o(i.readIMU) refers to _printf_str.o(.text) for _printf_str
+    imu.o(i.readIMU) refers to imu.o(i.UART0_init) for UART0_init
+    imu.o(i.readIMU) refers to main.o(i.UART0_init) for UART0_init
+    imu.o(i.readIMU) refers to imu.o(i.I2C_INIT) for I2C_INIT
+    imu.o(i.readIMU) refers to main.o(i.I2C_INIT) for I2C_INIT
+    imu.o(i.readIMU) refers to imu.o(i.MPU_INIT) for MPU_INIT
+    imu.o(i.readIMU) refers to main.o(i.MPU_INIT) for MPU_INIT
+    imu.o(i.readIMU) refers to imu.o(i.I2C_START) for I2C_START
+    imu.o(i.readIMU) refers to main.o(i.I2C_START) for I2C_START
+    imu.o(i.readIMU) refers to imu.o(i.I2C_WRITE) for I2C_WRITE
+    imu.o(i.readIMU) refers to main.o(i.I2C_WRITE) for I2C_WRITE
+    imu.o(i.readIMU) refers to imu.o(i.I2C_MULTIREAD) for I2C_MULTIREAD
+    imu.o(i.readIMU) refers to main.o(i.I2C_MULTIREAD) for I2C_MULTIREAD
+    imu.o(i.readIMU) refers to imu.o(i.I2C_STOP) for I2C_STOP
+    imu.o(i.readIMU) refers to main.o(i.I2C_STOP) for I2C_STOP
+    imu.o(i.readIMU) refers to dflt_noclz.o(x$fpl$dflt) for __aeabi_i2d
+    imu.o(i.readIMU) refers to ddiv.o(x$fpl$ddiv) for __aeabi_ddiv
+    imu.o(i.readIMU) refers to daddsub_noclz.o(x$fpl$dadd) for __aeabi_dadd
+    imu.o(i.readIMU) refers to noretval__2sprintf.o(.text) for __2sprintf
+    imu.o(i.readIMU) refers to imu.o(i.UART0_SendString) for UART0_SendString
+    imu.o(i.readIMU) refers to main.o(i.UART0_SendString) for UART0_SendString
+    imu.o(i.readIMU) refers to imu.o(i.delay_ms) for delay_ms
+    imu.o(i.readIMU) refers to main.o(i.delay_ms) for delay_ms
+    imu.o(i.readIMU) refers to imu.o(.conststring) for .conststring
     lib_funcs.o(i.delayMS) refers to lib_funcs.o(i.delayUS) for delayUS
     lib_funcs.o(i.fgetc) refers to lib_funcs.o(i.uartRead) for uartRead
     lib_funcs.o(i.fgetc) refers to lib_funcs.o(i.uartWrite) for uartWrite
@@ -34,15 +83,6 @@ Section Cross References
     lib_funcs.o(i.initClocks) refers to lib_funcs.o(i.setupPLL0) for setupPLL0
     lib_funcs.o(i.initClocks) refers to lib_funcs.o(i.feedSeq) for feedSeq
     lib_funcs.o(i.initClocks) refers to lib_funcs.o(i.connectPLL0) for connectPLL0
-    gps.o(i.UART1_SendString) refers to gps.o(i.UART1_SendChar) for UART1_SendChar
-    gps.o(i.getGPS) refers to _scanf_int.o(.text) for _scanf_int
-    gps.o(i.getGPS) refers to _scanf_str.o(.text) for _scanf_string
-    gps.o(i.getGPS) refers to gps.o(i.UART1_Init) for UART1_Init
-    gps.o(i.getGPS) refers to gps.o(i.UART1_ReadChar) for UART1_ReadChar
-    gps.o(i.getGPS) refers to rt_memclr_w.o(.text) for __aeabi_memclr4
-    gps.o(i.getGPS) refers to strncmp.o(.text) for strncmp
-    gps.o(i.getGPS) refers to strlen.o(.text) for strlen
-    gps.o(i.getGPS) refers to __0sscanf.o(.text) for __0sscanf
     lm35.o(i.ReadTemperature) refers to _printf_percent.o(.ARM.Collect$$_printf_percent$$00000000) for _printf_percent
     lm35.o(i.ReadTemperature) refers to _printf_f.o(.ARM.Collect$$_printf_percent$$00000003) for _printf_f
     lm35.o(i.ReadTemperature) refers to printf1.o(x$fpl$printf1) for _printf_fp_dec
@@ -56,13 +96,122 @@ Section Cross References
     lm35.o(i.ReadTemperature) refers to ddiv.o(x$fpl$ddiv) for __aeabi_ddiv
     lm35.o(i.ReadTemperature) refers to d2f.o(x$fpl$d2f) for __aeabi_d2f
     lm35.o(i.ReadTemperature) refers to lib_funcs.o(i.delayMS) for delayMS
+    main.o(i.GSM_SendSMS) refers to gsm.o(i.tx_str) for tx_str
+    main.o(i.GSM_SendSMS) refers to main.o(i.tx_str) for tx_str
+    main.o(i.GSM_SendSMS) refers to gsm.o(i.tx) for tx
+    main.o(i.GSM_SendSMS) refers to main.o(i.tx) for tx
+    main.o(i.GSM_SendSMS) refers to gsm.o(i.gsm_delay) for gsm_delay
+    main.o(i.GSM_SendSMS) refers to main.o(i.gsm_delay) for gsm_delay
+    main.o(i.I2C_MPU_CUSTOM) refers to imu.o(i.I2C_START) for I2C_START
+    main.o(i.I2C_MPU_CUSTOM) refers to main.o(i.I2C_START) for I2C_START
+    main.o(i.I2C_MPU_CUSTOM) refers to imu.o(i.I2C_WRITE) for I2C_WRITE
+    main.o(i.I2C_MPU_CUSTOM) refers to main.o(i.I2C_WRITE) for I2C_WRITE
+    main.o(i.I2C_MPU_CUSTOM) refers to imu.o(i.I2C_STOP) for I2C_STOP
+    main.o(i.I2C_MPU_CUSTOM) refers to main.o(i.I2C_STOP) for I2C_STOP
+    main.o(i.MPU_INIT) refers to imu.o(i.delay_ms) for delay_ms
+    main.o(i.MPU_INIT) refers to main.o(i.delay_ms) for delay_ms
+    main.o(i.MPU_INIT) refers to imu.o(i.I2C_MPU_CUSTOM) for I2C_MPU_CUSTOM
+    main.o(i.MPU_INIT) refers to main.o(i.I2C_MPU_CUSTOM) for I2C_MPU_CUSTOM
+    main.o(i.ReadTemperature) refers to _printf_percent.o(.ARM.Collect$$_printf_percent$$00000000) for _printf_percent
+    main.o(i.ReadTemperature) refers to _printf_f.o(.ARM.Collect$$_printf_percent$$00000003) for _printf_f
+    main.o(i.ReadTemperature) refers to printf1.o(x$fpl$printf1) for _printf_fp_dec
+    main.o(i.ReadTemperature) refers to lib_funcs.o(i.initClocks) for initClocks
+    main.o(i.ReadTemperature) refers to lib_funcs.o(i.initUART0) for initUART0
+    main.o(i.ReadTemperature) refers to lib_funcs.o(i.initTimer0) for initTimer0
+    main.o(i.ReadTemperature) refers to noretval__2printf.o(.text) for __2printf
+    main.o(i.ReadTemperature) refers to fflt_noclz.o(x$fpl$fflt) for __aeabi_i2f
+    main.o(i.ReadTemperature) refers to f2d.o(x$fpl$f2d) for __aeabi_f2d
+    main.o(i.ReadTemperature) refers to dmul.o(x$fpl$dmul) for __aeabi_dmul
+    main.o(i.ReadTemperature) refers to ddiv.o(x$fpl$ddiv) for __aeabi_ddiv
+    main.o(i.ReadTemperature) refers to d2f.o(x$fpl$d2f) for __aeabi_d2f
+    main.o(i.ReadTemperature) refers to lib_funcs.o(i.delayMS) for delayMS
+    main.o(i.UART0_SendString) refers to imu.o(i.UART0_TxChar) for UART0_TxChar
+    main.o(i.UART0_SendString) refers to main.o(i.UART0_TxChar) for UART0_TxChar
+    main.o(i.UART1_SendString) refers to gps.o(i.UART1_SendChar) for UART1_SendChar
+    main.o(i.UART1_SendString) refers to main.o(i.UART1_SendChar) for UART1_SendChar
+    main.o(i.callingGSM_from_mainModule) refers to gsm.o(i.ser_init) for ser_init
+    main.o(i.callingGSM_from_mainModule) refers to main.o(i.ser_init) for ser_init
+    main.o(i.callingGSM_from_mainModule) refers to gsm.o(i.GSM_SendSMS) for GSM_SendSMS
+    main.o(i.callingGSM_from_mainModule) refers to main.o(i.GSM_SendSMS) for GSM_SendSMS
+    main.o(i.getGPS) refers to _scanf_int.o(.text) for _scanf_int
+    main.o(i.getGPS) refers to _scanf_str.o(.text) for _scanf_string
+    main.o(i.getGPS) refers to gps.o(i.UART1_Init) for UART1_Init
+    main.o(i.getGPS) refers to main.o(i.UART1_Init) for UART1_Init
+    main.o(i.getGPS) refers to gps.o(i.UART1_ReadChar) for UART1_ReadChar
+    main.o(i.getGPS) refers to main.o(i.UART1_ReadChar) for UART1_ReadChar
+    main.o(i.getGPS) refers to rt_memclr_w.o(.text) for __aeabi_memclr4
+    main.o(i.getGPS) refers to strncmp.o(.text) for strncmp
+    main.o(i.getGPS) refers to strlen.o(.text) for strlen
+    main.o(i.getGPS) refers to __0sscanf.o(.text) for __0sscanf
+    main.o(i.readIMU) refers to _printf_percent.o(.ARM.Collect$$_printf_percent$$00000000) for _printf_percent
+    main.o(i.readIMU) refers to _printf_f.o(.ARM.Collect$$_printf_percent$$00000003) for _printf_f
+    main.o(i.readIMU) refers to _printf_c.o(.ARM.Collect$$_printf_percent$$00000013) for _printf_c
+    main.o(i.readIMU) refers to printf1.o(x$fpl$printf1) for _printf_fp_dec
+    main.o(i.readIMU) refers to _printf_str.o(.text) for _printf_str
+    main.o(i.readIMU) refers to imu.o(i.UART0_init) for UART0_init
+    main.o(i.readIMU) refers to main.o(i.UART0_init) for UART0_init
+    main.o(i.readIMU) refers to imu.o(i.I2C_INIT) for I2C_INIT
+    main.o(i.readIMU) refers to main.o(i.I2C_INIT) for I2C_INIT
+    main.o(i.readIMU) refers to imu.o(i.MPU_INIT) for MPU_INIT
+    main.o(i.readIMU) refers to main.o(i.MPU_INIT) for MPU_INIT
+    main.o(i.readIMU) refers to imu.o(i.I2C_START) for I2C_START
+    main.o(i.readIMU) refers to main.o(i.I2C_START) for I2C_START
+    main.o(i.readIMU) refers to imu.o(i.I2C_WRITE) for I2C_WRITE
+    main.o(i.readIMU) refers to main.o(i.I2C_WRITE) for I2C_WRITE
+    main.o(i.readIMU) refers to imu.o(i.I2C_MULTIREAD) for I2C_MULTIREAD
+    main.o(i.readIMU) refers to main.o(i.I2C_MULTIREAD) for I2C_MULTIREAD
+    main.o(i.readIMU) refers to imu.o(i.I2C_STOP) for I2C_STOP
+    main.o(i.readIMU) refers to main.o(i.I2C_STOP) for I2C_STOP
+    main.o(i.readIMU) refers to dflt_noclz.o(x$fpl$dflt) for __aeabi_i2d
+    main.o(i.readIMU) refers to ddiv.o(x$fpl$ddiv) for __aeabi_ddiv
+    main.o(i.readIMU) refers to daddsub_noclz.o(x$fpl$dadd) for __aeabi_dadd
+    main.o(i.readIMU) refers to noretval__2sprintf.o(.text) for __2sprintf
+    main.o(i.readIMU) refers to imu.o(i.UART0_SendString) for UART0_SendString
+    main.o(i.readIMU) refers to main.o(i.UART0_SendString) for UART0_SendString
+    main.o(i.readIMU) refers to imu.o(i.delay_ms) for delay_ms
+    main.o(i.readIMU) refers to main.o(i.delay_ms) for delay_ms
+    main.o(i.readIMU) refers to main.o(.conststring) for .conststring
+    main.o(i.sendJson) refers to main.o(i.UART0_Init) for UART0_Init
+    main.o(i.sendJson) refers to wifi.o(i.UART0_Init) for UART0_Init
+    main.o(i.sendJson) refers to imu.o(i.UART0_SendString) for UART0_SendString
+    main.o(i.sendJson) refers to main.o(i.UART0_SendString) for UART0_SendString
+    main.o(i.sendJson) refers to gps.o(i.delay) for delay
+    main.o(i.sendJson) refers to main.o(i.delay) for delay
+    main.o(i.sendJson) refers to noretval__2snprintf.o(.text) for __2snprintf
+    main.o(i.sendJson) refers to strlen.o(.text) for strlen
+    main.o(i.sendJson) refers to main.o(i.UART0_SendChar) for UART0_SendChar
+    main.o(i.sendJson) refers to wifi.o(i.UART0_SendChar) for UART0_SendChar
+    main.o(i.tx_str) refers to gsm.o(i.tx) for tx
+    main.o(i.tx_str) refers to main.o(i.tx) for tx
+    wifi.o(i.sendJson) refers to main.o(i.UART0_Init) for UART0_Init
+    wifi.o(i.sendJson) refers to wifi.o(i.UART0_Init) for UART0_Init
+    wifi.o(i.sendJson) refers to imu.o(i.UART0_SendString) for UART0_SendString
+    wifi.o(i.sendJson) refers to main.o(i.UART0_SendString) for UART0_SendString
+    wifi.o(i.sendJson) refers to gps.o(i.delay) for delay
+    wifi.o(i.sendJson) refers to main.o(i.delay) for delay
+    wifi.o(i.sendJson) refers to noretval__2snprintf.o(.text) for __2snprintf
+    wifi.o(i.sendJson) refers to strlen.o(.text) for strlen
+    wifi.o(i.sendJson) refers to main.o(i.UART0_SendChar) for UART0_SendChar
+    wifi.o(i.sendJson) refers to wifi.o(i.UART0_SendChar) for UART0_SendChar
     __2printf.o(.text) refers to _printf_char_file.o(.text) for _printf_char_file
     __2printf.o(.text) refers to lib_funcs.o(.data) for __stdout
+    __2sprintf.o(.text) refers to _printf_char_common.o(.text) for _printf_char_common
+    __2sprintf.o(.text) refers to _sputc.o(.text) for _sputc
+    __2snprintf.o(.text) refers to _printf_char_common.o(.text) for _printf_char_common
+    __2snprintf.o(.text) refers to _sputc.o(.text) for _sputc
+    __2snprintf.o(.text) refers to _snputc.o(.text) for _snputc
     noretval__2printf.o(.text) refers to _printf_char_file.o(.text) for _printf_char_file
     noretval__2printf.o(.text) refers to lib_funcs.o(.data) for __stdout
+    noretval__2sprintf.o(.text) refers to _printf_char_common.o(.text) for _printf_char_common
+    noretval__2sprintf.o(.text) refers to _sputc.o(.text) for _sputc
+    noretval__2snprintf.o(.text) refers to _printf_char_common.o(.text) for _printf_char_common
+    noretval__2snprintf.o(.text) refers to _sputc.o(.text) for _sputc
+    noretval__2snprintf.o(.text) refers to _snputc.o(.text) for _snputc
     __printf.o(.text) refers to __printf.o(i.__ARM_common_call_via_r1) for __ARM_common_call_via_r1
     __printf.o(.text) refers to _printf_percent.o(.ARM.Collect$$_printf_percent$$00000000) for _printf_percent
     __printf.o(.text) refers to __printf.o(i.__ARM_common_call_via_r2) for __ARM_common_call_via_r2
+    _printf_str.o(.text) refers (Special) to _printf_char.o(.text) for _printf_cs_common
+    _printf_str.o(.text) refers to __printf.o(i.__ARM_common_call_via_r2) for __ARM_common_call_via_r2
     __printf_flags.o(.text) refers to __printf.o(i.__ARM_common_call_via_r1) for __ARM_common_call_via_r1
     __printf_flags.o(.text) refers to _printf_percent.o(.ARM.Collect$$_printf_percent$$00000000) for _printf_percent
     __printf_flags.o(.text) refers to __printf.o(i.__ARM_common_call_via_r2) for __ARM_common_call_via_r2
@@ -92,6 +241,7 @@ Section Cross References
     __printf_flags_ss_wp.o(.text) refers to _printf_percent.o(.ARM.Collect$$_printf_percent$$00000000) for _printf_percent
     __printf_flags_ss_wp.o(.text) refers to __printf.o(i.__ARM_common_call_via_r2) for __ARM_common_call_via_r2
     __printf_flags_ss_wp.o(.text) refers to __printf_flags_ss_wp.o(.constdata) for .constdata
+    _printf_c.o(.ARM.Collect$$_printf_percent$$00000013) refers (Weak) to _printf_char.o(.text) for _printf_char
     _printf_f.o(.ARM.Collect$$_printf_percent$$00000003) refers (Weak) to printf1.o(x$fpl$printf1) for _printf_fp_dec
     _printf_percent.o(.ARM.Collect$$_printf_percent$$00000000) refers (Special) to _printf_percent_end.o(.ARM.Collect$$_printf_percent$$00000017) for _printf_percent_end
     __0sscanf.o(.text) refers to scanf_char.o(.text) for __vfscanf_char
@@ -103,11 +253,24 @@ Section Cross References
     d2f.o(x$fpl$d2f) refers (Special) to usenofp.o(x$fpl$usenofp) for __I$use$fp
     d2f.o(x$fpl$d2f) refers to fretinf.o(x$fpl$fretinf) for __fpl_fretinf
     d2f.o(x$fpl$d2f) refers to dnaninf.o(x$fpl$dnaninf) for __fpl_dnaninf
+    daddsub_noclz.o(x$fpl$dadd) refers (Special) to usenofp.o(x$fpl$usenofp) for __I$use$fp
+    daddsub_noclz.o(x$fpl$dadd) refers to daddsub_noclz.o(x$fpl$dsub) for _dsub1
+    daddsub_noclz.o(x$fpl$dadd) refers to dretinf.o(x$fpl$dretinf) for __fpl_dretinf
+    daddsub_noclz.o(x$fpl$dadd) refers to dnaninf.o(x$fpl$dnaninf) for __fpl_dnaninf
+    daddsub_noclz.o(x$fpl$drsb) refers (Special) to usenofp.o(x$fpl$usenofp) for __I$use$fp
+    daddsub_noclz.o(x$fpl$drsb) refers to daddsub_noclz.o(x$fpl$dadd) for _dadd1
+    daddsub_noclz.o(x$fpl$drsb) refers to daddsub_noclz.o(x$fpl$dsub) for _dsub1
+    daddsub_noclz.o(x$fpl$dsub) refers (Special) to usenofp.o(x$fpl$usenofp) for __I$use$fp
+    daddsub_noclz.o(x$fpl$dsub) refers to daddsub_noclz.o(x$fpl$dadd) for _dadd1
+    daddsub_noclz.o(x$fpl$dsub) refers to dnaninf.o(x$fpl$dnaninf) for __fpl_dnaninf
     ddiv.o(x$fpl$drdiv) refers (Special) to usenofp.o(x$fpl$usenofp) for __I$use$fp
     ddiv.o(x$fpl$drdiv) refers to ddiv.o(x$fpl$ddiv) for ddiv_entry
     ddiv.o(x$fpl$ddiv) refers (Special) to usenofp.o(x$fpl$usenofp) for __I$use$fp
     ddiv.o(x$fpl$ddiv) refers to dretinf.o(x$fpl$dretinf) for __fpl_dretinf
     ddiv.o(x$fpl$ddiv) refers to dnaninf.o(x$fpl$dnaninf) for __fpl_dnaninf
+    dflt_noclz.o(x$fpl$dfltu) refers (Special) to usenofp.o(x$fpl$usenofp) for __I$use$fp
+    dflt_noclz.o(x$fpl$dfltu) refers to dflt_noclz.o(x$fpl$dflt) for __dflt_normalise
+    dflt_noclz.o(x$fpl$dflt) refers (Special) to usenofp.o(x$fpl$usenofp) for __I$use$fp
     dmul.o(x$fpl$dmul) refers (Special) to usenofp.o(x$fpl$usenofp) for __I$use$fp
     dmul.o(x$fpl$dmul) refers to dretinf.o(x$fpl$dretinf) for __fpl_dretinf
     dmul.o(x$fpl$dmul) refers to dnaninf.o(x$fpl$dnaninf) for __fpl_dnaninf
@@ -137,6 +300,8 @@ Section Cross References
     _printf_fp_dec.o(.text) refers to rtudiv10.o(.text) for __rt_udiv10
     _printf_fp_dec.o(.text) refers to __printf.o(i.__ARM_common_call_via_r2) for __ARM_common_call_via_r2
     _printf_fp_dec.o(.text) refers to rt_locale_intlibspace.o(.text) for __rt_locale
+    _printf_char_common.o(.text) refers to __printf_flags_ss_wp.o(.text) for __printf
+    _printf_char.o(.text) refers (Weak) to _printf_str.o(.text) for _printf_str
     _printf_char_file.o(.text) refers to _printf_char_common.o(.text) for _printf_char_common
     _printf_char_file.o(.text) refers to ferror.o(.text) for ferror
     _printf_char_file.o(.text) refers to lib_funcs.o(i.fputc) for fputc
@@ -161,8 +326,9 @@ Section Cross References
     rt_locale.o(.text) refers to rt_locale.o(.bss) for __rt_locale_data
     rt_locale_intlibspace.o(.text) refers to libspace.o(.bss) for __libspace_start
     isspace.o(.text) refers to rt_ctype_table.o(.text) for __rt_ctype_table
-    _printf_char_common.o(.text) refers to __printf_flags_wp.o(.text) for __printf
     _printf_fp_infnan.o(.text) refers to __printf.o(i.__ARM_common_call_via_r2) for __ARM_common_call_via_r2
+    __printf_nopercent.o(.text) refers to __printf_nopercent.o(i.__ARM_common_call_via_r7) for __ARM_common_call_via_r7
+    __printf_nopercent.o(.text) refers to __printf_nopercent.o(i.__ARM_common_call_via_r5) for __ARM_common_call_via_r5
     _scanf.o(.text) refers to __printf.o(i.__ARM_common_call_via_r2) for __ARM_common_call_via_r2
     _scanf.o(.text) refers to __printf.o(i.__ARM_common_call_via_r1) for __ARM_common_call_via_r1
     _scanf.o(.text) refers (Weak) to _scanf_int.o(.text) for _scanf_int
@@ -206,8 +372,6 @@ Section Cross References
     sys_stackheap_outer.o(.text) refers to startup.o(.text) for __user_initial_stackheap
     rt_ctype_table.o(.text) refers to rt_locale_intlibspace.o(.text) for __rt_locale
     rt_ctype_table.o(.text) refers to lc_ctype_c.o(locale$$code) for _get_lc_ctype
-    __printf_nopercent.o(.text) refers to __printf_nopercent.o(i.__ARM_common_call_via_r7) for __ARM_common_call_via_r7
-    __printf_nopercent.o(.text) refers to __printf_nopercent.o(i.__ARM_common_call_via_r5) for __ARM_common_call_via_r5
     exit.o(.text) refers to rtexit.o(.ARM.Collect$$rtexit$$00000000) for __rt_exit
     aeabi_sdiv.o(.text_udiv) refers to aeabi_sdiv.o(.text) for __arm_div2
     aeabi_sdiv_div0.o(.text_udiv) refers to aeabi_sdiv_div0.o(.text) for __arm_div2

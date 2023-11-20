@@ -1,4 +1,4 @@
-// #include <lpc214x.h>
+#include <lpc214x.h>
 
 #define NUMBER "9876543210" // Here insert your number where you want to send message
 

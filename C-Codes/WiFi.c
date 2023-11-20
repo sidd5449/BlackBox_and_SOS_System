@@ -1,11 +1,15 @@
-void delay(unsigned int count) {
-    unsigned int i;
-    for (i = 0; i < count; i++) {
-        for (int j = 0; j < 1000; j++) {
+#include <lpc214x.h>
+#include <stdio.h>
+#include <string.h>
+
+//void delay(unsigned int count) {
+//    unsigned int i;
+//    for (i = 0; i < count; i++) {
+//        for (int j = 0; j < 1000; j++) {
             // Delay loop
-        }
-    }
-}
+//        }
+//    }
+//}
 
 void UART0_Init() {
     // Configure UART0 with baud rate 115200, 8 data bits, 1 stop bit, no parity
@@ -19,13 +23,13 @@ void UART0_SendChar(char ch) {
     U0THR = ch;               // Send the character
 }
 
-void UART0_SendString(const char *str) {
-    while (*str) {
-        UART0_SendChar(*str++);
-    }
-}
+//void UART0_SendString(const char *str) {
+//    while (*str) {
+ //       UART0_SendChar(*str++);
+  //  }
+//}
 
-char *sendJson(float accX, float accY, float accZ, float gyX, float gyY, float gyZ, float vib, float temp, bool accident) {
+char *sendJson(float accX, float accY, float accZ, float gyX, float gyY, float gyZ, float vib, float temp, int accident) {
     PINSEL0 = 0x00000005;  // Configure UART0 pins
     UART0_Init();
 
@@ -37,16 +41,17 @@ char *sendJson(float accX, float accY, float accZ, float gyX, float gyY, float g
 
     // JSON data
     char json_data[128]; // Make sure the array is large enough to hold your JSON data
-    snprintf(json_data, sizeof(json_data), "{\"accX\":\"%f\",
-\"accY\":\"%f\",
-        \"accZ\":\"%f\",
-        \"gyX\":\"%f\",
-        \"gyY\":\"%f\",
-        \"gyZ\":\"%f\",
-        \"temp\":\"%f\",
-        \"vib\":\"%f\",
-        \"accident\":\"%d\",
-    }", accX, accY, accZ, gyX, gyY, gyZ, temp, vib, accident);
+	snprintf(json_data, sizeof(json_data), "Bois");
+    //snprintf(json_data, sizeof(json_data), "{\"accX\":\"%f\",
+//\"accY\":\"%f\",
+  //      \"accZ\":\"%f\",
+    //    \"gyX\":\"%f\",
+      //  \"gyY\":\"%f\",
+       // \"gyZ\":\"%f\",
+        //\"temp\":\"%f\",
+        //\"vib\":\"%f\",
+        //\"accident\":\"%d\",
+    //}", accX, accY, accZ, gyX, gyY, gyZ, temp, vib, accident);
     
     // Send JSON data to a server
     UART0_SendString("AT+CIPSTART=\"TCP\",\"your_server_ip\",your_server_port\r\n");

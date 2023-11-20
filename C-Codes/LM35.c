@@ -49,7 +49,8 @@ float ReadTemperature() {
 
         delayMS(1000); // 1 Update per second
     }
-
+		return temperature;
+	}
     // return 0; //This won't execute normally
 
     // // Set up the ADC for the LM35 sensor
@@ -57,20 +58,19 @@ float ReadTemperature() {
     // // Make sure to configure the ADC pins and settings as needed
 
     // // Start the conversion
-    // AD0CR = (1 << 0) | (1 << 21);
+    //AD0CR = (1 << 0) | (1 << 21);
 
     // // Wait for the conversion to complete
-    // while (!(AD0GDR & (1 << 31)))
-    // {
-    //     // Wait for conversion
-    // }
+    //while (!(AD0GDR & (1 << 31)))
+   // {
+			//Wait for conversion
+   // }
 
     // // Read the ADC value
-    // uint16_t adcValue = (AD0GDR >> 4) & 0xFFF;
+    //uint16_t adcValue = (AD0GDR >> 4) & 0xFFF;
 
     // // Convert ADC value to temperature in Celsius
-    // float temperature = (adcValue * 3300.0 / 4095.0) / 10.0;
+    //float temperature = (adcValue * 3300.0 / 4095.0) / 10.0;
 
-    return temperature;
-}
+    
 

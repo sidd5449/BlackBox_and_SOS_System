@@ -6,62 +6,14 @@
   http://www.electronicwings.com/arm7/mpu6050-gyroscope-accelerometer-temperature-interfacing-with-lpc2148
 */
 
-// #include <lpc214x.h>
-// #include <stdint.h>
-// #include <stdio.h>
+#include <lpc214x.h>
+#include <stdint.h>
+#include <stdio.h>
 
 #define MPU_WRITE_ADDR 0xD0
 #define MPU_READ_ADDR 0xD1
 
 char receive_string[100];
-
-
-// this is the main function here, which returns all values to the main module
-float readIMU() {
-
-    int16_t GX, GY, GZ, AX, AY, AZ, T;
-    double XA, XG, YA, YG, ZA, ZG, TF;
-    char data[14];
-    char result[100];
-    UART0_init();
-    I2C_INIT();
-    MPU_INIT();
-
-    while (1) {
-        I2C_START();
-        I2C_WRITE(MPU_WRITE_ADDR);
-        I2C_WRITE(0x3B);
-        I2C_START();
-        I2C_WRITE(MPU_READ_ADDR);
-        I2C_MULTIREAD(data, 14);
-        I2C_STOP();
-
-        AX = (((int16_t)(data[0] << 8)) | ((int16_t)data[1]));
-        AY = (((int16_t)(data[2] << 8)) | ((int16_t)data[3]));
-        AZ = (((int16_t)(data[4] << 8)) | ((int16_t)data[5]));
-
-        XA = (double)AX / 16384.0;
-        YA = (double)AY / 16384.0;
-        ZA = (double)AZ / 16384.0;
-
-        T = (((int16_t)(data[6] << 8)) | ((int16_t)data[7]));
-
-        TF = (((double)T / 340.00) + 36.53);
-
-        GX = (((int16_t)(data[8] << 8)) | ((int16_t)data[9]));
-        GY = (((int16_t)(data[10] << 8)) | ((int16_t)data[11]));
-        GZ = (((int16_t)(data[12] << 8)) | ((int16_t)data[13]));
-
-        XG = (double)GX / 131.0;
-        YG = (double)GY / 131.0;
-        ZG = (double)GZ / 131.0;
-
-        sprintf(result, "Ax=%lfg Ay=%lfg Az=%lfg T=%lf%cC Gx=%lf%c/s Gy=%lf%c/s Gz=%lf%c/s", XA, YA, ZA, TF, 0xB0, XG, 0xB0, YG, 0xB0, ZG, 0xB0);
-        UART0_SendString(result);
-        UART0_SendString("\r\n");
-        delay_ms(1000);
-    }
-}
 
 
 void delay_ms(uint16_t j) { /* Function for delay in milliseconds */
@@ -189,4 +141,52 @@ void MPU_INIT(void) {
 
     I2C_MPU_CUSTOM(0x74, 0x00); /* FIFO R/W */
 }
+// this is the main function here, which returns all values to the main module
+float readIMU() {
+
+    int16_t GX, GY, GZ, AX, AY, AZ, T;
+    double XA, XG, YA, YG, ZA, ZG, TF;
+    char data[14];
+    char result[100];
+    UART0_init();
+    I2C_INIT();
+    MPU_INIT();
+
+    while (1) {
+        I2C_START();
+        I2C_WRITE(MPU_WRITE_ADDR);
+        I2C_WRITE(0x3B);
+        I2C_START();
+        I2C_WRITE(MPU_READ_ADDR);
+        I2C_MULTIREAD(data, 14);
+        I2C_STOP();
+
+        AX = (((int16_t)(data[0] << 8)) | ((int16_t)data[1]));
+        AY = (((int16_t)(data[2] << 8)) | ((int16_t)data[3]));
+        AZ = (((int16_t)(data[4] << 8)) | ((int16_t)data[5]));
+
+        XA = (double)AX / 16384.0;
+        YA = (double)AY / 16384.0;
+        ZA = (double)AZ / 16384.0;
+
+        T = (((int16_t)(data[6] << 8)) | ((int16_t)data[7]));
+
+        TF = (((double)T / 340.00) + 36.53);
+
+        GX = (((int16_t)(data[8] << 8)) | ((int16_t)data[9]));
+        GY = (((int16_t)(data[10] << 8)) | ((int16_t)data[11]));
+        GZ = (((int16_t)(data[12] << 8)) | ((int16_t)data[13]));
+
+        XG = (double)GX / 131.0;
+        YG = (double)GY / 131.0;
+        ZG = (double)GZ / 131.0;
+
+        sprintf(result, "Ax=%lfg Ay=%lfg Az=%lfg T=%lf%cC Gx=%lf%c/s Gy=%lf%c/s Gz=%lf%c/s", XA, YA, ZA, TF, 0xB0, XG, 0xB0, YG, 0xB0, ZG, 0xB0);
+        UART0_SendString(result);
+        UART0_SendString("\r\n");
+        delay_ms(1000);
+    }
+}
+
+
 
