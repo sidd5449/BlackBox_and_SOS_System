@@ -1,4 +1,6 @@
 #include <lpc214x.h>
+#include <string.h>
+#include <stdio.h>
 void delay(unsigned int count) {
     unsigned int i;
     for (i = 0; i < count; i++) {
@@ -73,5 +75,5 @@ char *getGPS() {
         }
     }
 
-    return gps_data;
+    return *gps_data;
 }
