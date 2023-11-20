@@ -8,7 +8,7 @@ void delay(unsigned int count) {
     }
 }
 
-void UART1_Init() {
+void UART1_Init_1() {
     // Configure UART0 with baud rate 9600, 8 data bits, 1 stop bit, no parity
     U1LCR = 0x83;  // 8 bits, no parity, 1 stop bit, DLAB = 1
     U1DLL = 97;    // Set baud rate to 9600
@@ -36,7 +36,7 @@ char *getGPS() {
     char *gpgga_prefix = "$GPGGA,";
 
     PINSEL1 = 0x00000005;  // Configure UART0 pins
-    UART1_Init();
+    UART1_Init_1();
 
     while (1) {
         char received_char = UART1_ReadChar();
