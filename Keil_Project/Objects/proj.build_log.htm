@@ -22,73 +22,91 @@ Dialog DLL:      TARMP.DLL V1.54.1.0
  
 <h2>Project:</h2>
 E:\College\SEM_7\ESD_LAB\BlackBox_and_SOS_System\Keil_Project\proj.uvproj
-Project File Date:  11/12/2023
+Project File Date:  11/20/2023
 
 <h2>Output:</h2>
 *** Using Compiler 'V5.06 update 7 (build 960)', folder: 'C:\Keil_v5\ARM\ARM_Compiler_5.06u7\Bin'
 Rebuild target 'Target 1'
 assembling Startup.s...
-compiling main.c...
-LM35.c(22): warning:  #223-D: function "initClocks" declared implicitly
-      initClocks(); // Set PCLK = CCLK = 60Mhz - used by: UART, Timer and ADC
-LM35.c(23): warning:  #223-D: function "initUART0" declared implicitly
-      initUART0();  // Initialize UART0 for retargeted printf()
-LM35.c(24): warning:  #223-D: function "initTimer0" declared implicitly
-      initTimer0(); // Init Timer for delay functions
-LM35.c(50): warning:  #223-D: function "delayMS" declared implicitly
-          delayMS(1000); // 1 Update per second
-LM35.c(74): warning:  #111-D: statement is unreachable
-      return temperature;
-main.c(15): warning:  #177-D: variable "thAX"  was declared but never referenced
-          float thAX, thAY, thAZ, thGX, thGY, thGZ, thTemp, thVib;
-main.c(15): warning:  #177-D: variable "thAY"  was declared but never referenced
-          float thAX, thAY, thAZ, thGX, thGY, thGZ, thTemp, thVib;
-main.c(15): warning:  #177-D: variable "thAZ"  was declared but never referenced
-          float thAX, thAY, thAZ, thGX, thGY, thGZ, thTemp, thVib;
-main.c(15): warning:  #177-D: variable "thGX"  was declared but never referenced
-          float thAX, thAY, thAZ, thGX, thGY, thGZ, thTemp, thVib;
-main.c(15): warning:  #177-D: variable "thGY"  was declared but never referenced
-          float thAX, thAY, thAZ, thGX, thGY, thGZ, thTemp, thVib;
-main.c(15): warning:  #177-D: variable "thGZ"  was declared but never referenced
-          float thAX, thAY, thAZ, thGX, thGY, thGZ, thTemp, thVib;
-main.c(15): warning:  #177-D: variable "thTemp"  was declared but never referenced
-          float thAX, thAY, thAZ, thGX, thGY, thGZ, thTemp, thVib;
-main.c(15): warning:  #177-D: variable "thVib"  was declared but never referenced
-          float thAX, thAY, thAZ, thGX, thGY, thGZ, thTemp, thVib;
-main.c(46): warning:  #111-D: statement is unreachable
-      return 1;
-main.c(48): warning:  #1-D: last line of file ends without a newline
-  }
-main.c: 15 warnings, 0 errors
-compiling LM35.c...
-..\C-Codes\LM35.c(74): warning:  #111-D: statement is unreachable
-      return temperature;
-..\C-Codes\LM35.c: 1 warning, 0 errors
+compiling GSM.c...
 compiling lib_funcs.c...
+compiling IMU.c...
+compiling Buffer_and_DataParsing.c...
+..\C-Codes\Buffer_and_DataParsing.c(38): warning:  #1-D: last line of file ends without a newline
+  }
+..\C-Codes\Buffer_and_DataParsing.c: 1 warning, 0 errors
+compiling LM35.c...
+..\C-Codes\LM35.c(52): warning:  #111-D: statement is unreachable
+  		return temperature;
+..\C-Codes\LM35.c: 1 warning, 0 errors
 compiling GPS.c...
-..\C-Codes\GPS.c(45): warning:  #223-D: function "memset" declared implicitly
-              memset(gps_data, 0, sizeof(gps_data));
-..\C-Codes\GPS.c(55): warning:  #223-D: function "strncmp" declared implicitly
-                  if (i >= 7 && strncmp(gps_data + i - 7, "\r\n", 2) == 0) {
-..\C-Codes\GPS.c(62): warning:  #223-D: function "strncmp" declared implicitly
-              if (strncmp(gps_data, gpgga_prefix, strlen(gpgga_prefix)) == 0) {
-..\C-Codes\GPS.c(62): warning:  #223-D: function "strlen" declared implicitly
-              if (strncmp(gps_data, gpgga_prefix, strlen(gpgga_prefix)) == 0) {
-..\C-Codes\GPS.c(68): warning:  #223-D: function "sscanf" declared implicitly
-                  if (sscanf(gps_data, "$GPGGA,%*d.%*d,%10[^,],%*c,%11[^,],", latitude, longitude) == 2) {
-..\C-Codes\GPS.c(76): warning:  #111-D: statement is unreachable
+..\C-Codes\GPS.c(78): warning:  #111-D: statement is unreachable
       return gps_data;
-..\C-Codes\GPS.c(76): warning:  #1166-D: returning pointer to local variable
+..\C-Codes\GPS.c(78): warning:  #1166-D: returning pointer to local variable
       return gps_data;
-..\C-Codes\GPS.c: 7 warnings, 0 errors
+..\C-Codes\GPS.c: 2 warnings, 0 errors
+compiling WiFi.c...
+..\C-Codes\WiFi.c(37): warning:  #223-D: function "UART0_SendString" declared implicitly
+      UART0_SendString("AT\r\n");
+..\C-Codes\WiFi.c(38): warning:  #223-D: function "delay" declared implicitly
+      delay(1000); // Wait for the ESP8266 to respond
+..\C-Codes\WiFi.c(68): warning:  #1-D: last line of file ends without a newline
+  }
+..\C-Codes\WiFi.c: 3 warnings, 0 errors
+compiling main.c...
+..\C-Codes\GPS.c(78): warning:  #111-D: statement is unreachable
+      return gps_data;
+..\C-Codes\GPS.c(78): warning:  #1166-D: returning pointer to local variable
+      return gps_data;
+..\C-Codes\LM35.c(52): warning:  #111-D: statement is unreachable
+  		return temperature;
+..\C-Codes\WiFi.c(68): warning:  #1-D: last line of file ends without a newline
+  }
+..\C-Codes\main.c(46): warning:  #111-D: statement is unreachable
+      return 1;
+..\C-Codes\main.c(48): warning:  #1-D: last line of file ends without a newline
+  }
+..\C-Codes\main.c: 6 warnings, 0 errors
 linking...
-.\Objects\proj.axf: Error: L6200E: Symbol ReadTemperature multiply defined (by lm35.o and main.o).
+.\Objects\proj.axf: Error: L6200E: Symbol UART1_Init multiply defined (by main.o and gps.o).
+.\Objects\proj.axf: Error: L6200E: Symbol UART1_ReadChar multiply defined (by main.o and gps.o).
+.\Objects\proj.axf: Error: L6200E: Symbol UART1_SendChar multiply defined (by main.o and gps.o).
+.\Objects\proj.axf: Error: L6200E: Symbol UART1_SendString multiply defined (by main.o and gps.o).
+.\Objects\proj.axf: Error: L6200E: Symbol delay multiply defined (by main.o and gps.o).
+.\Objects\proj.axf: Error: L6200E: Symbol getGPS multiply defined (by main.o and gps.o).
+.\Objects\proj.axf: Error: L6200E: Symbol dell multiply defined (by main.o and gsm.o).
+.\Objects\proj.axf: Error: L6200E: Symbol GSM_SendSMS multiply defined (by main.o and gsm.o).
+.\Objects\proj.axf: Error: L6200E: Symbol callingGSM_from_mainModule multiply defined (by main.o and gsm.o).
+.\Objects\proj.axf: Error: L6200E: Symbol gsm_delay multiply defined (by main.o and gsm.o).
+.\Objects\proj.axf: Error: L6200E: Symbol rx multiply defined (by main.o and gsm.o).
+.\Objects\proj.axf: Error: L6200E: Symbol ser_init multiply defined (by main.o and gsm.o).
+.\Objects\proj.axf: Error: L6200E: Symbol tx multiply defined (by main.o and gsm.o).
+.\Objects\proj.axf: Error: L6200E: Symbol tx_str multiply defined (by main.o and gsm.o).
+.\Objects\proj.axf: Error: L6200E: Symbol receive_string multiply defined (by main.o and imu.o).
+.\Objects\proj.axf: Error: L6200E: Symbol I2C_INIT multiply defined (by main.o and imu.o).
+.\Objects\proj.axf: Error: L6200E: Symbol I2C_MPU_CUSTOM multiply defined (by main.o and imu.o).
+.\Objects\proj.axf: Error: L6200E: Symbol I2C_MULTIREAD multiply defined (by main.o and imu.o).
+.\Objects\proj.axf: Error: L6200E: Symbol I2C_READ multiply defined (by main.o and imu.o).
+.\Objects\proj.axf: Error: L6200E: Symbol I2C_READ1 multiply defined (by main.o and imu.o).
+.\Objects\proj.axf: Error: L6200E: Symbol I2C_START multiply defined (by main.o and imu.o).
+.\Objects\proj.axf: Error: L6200E: Symbol I2C_STOP multiply defined (by main.o and imu.o).
+.\Objects\proj.axf: Error: L6200E: Symbol I2C_WRITE multiply defined (by main.o and imu.o).
+.\Objects\proj.axf: Error: L6200E: Symbol MPU_INIT multiply defined (by main.o and imu.o).
+.\Objects\proj.axf: Error: L6200E: Symbol UART0_SendString multiply defined (by main.o and imu.o).
+.\Objects\proj.axf: Error: L6200E: Symbol UART0_TxChar multiply defined (by main.o and imu.o).
+.\Objects\proj.axf: Error: L6200E: Symbol UART0_init multiply defined (by main.o and imu.o).
+.\Objects\proj.axf: Error: L6200E: Symbol delay_ms multiply defined (by main.o and imu.o).
+.\Objects\proj.axf: Error: L6200E: Symbol readIMU multiply defined (by main.o and imu.o).
+.\Objects\proj.axf: Error: L6200E: Symbol ReadTemperature multiply defined (by main.o and lm35.o).
+.\Objects\proj.axf: Error: L6200E: Symbol UART0_Init multiply defined (by wifi.o and main.o).
+.\Objects\proj.axf: Error: L6200E: Symbol UART0_SendChar multiply defined (by wifi.o and main.o).
+.\Objects\proj.axf: Error: L6200E: Symbol sendJson multiply defined (by wifi.o and main.o).
 Not enough information to list image symbols.
 Not enough information to list load addresses in the image map.
-Finished: 2 information, 0 warning and 1 error messages.
-".\Objects\proj.axf" - 1 Error(s), 23 Warning(s).
+Finished: 2 information, 0 warning and 33 error messages.
+".\Objects\proj.axf" - 33 Error(s), 13 Warning(s).
 Target not created.
-Build Time Elapsed:  00:00:02
+Build Time Elapsed:  00:00:01
 </pre>
 </body>
 </html>

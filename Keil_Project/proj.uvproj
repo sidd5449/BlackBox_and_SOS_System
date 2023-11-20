@@ -429,14 +429,9 @@
               <FilePath>.\Startup.s</FilePath>
             </File>
             <File>
-              <FileName>main.c</FileName>
+              <FileName>Buffer_and_DataParsing.c</FileName>
               <FileType>1</FileType>
-              <FilePath>.\main.c</FilePath>
-            </File>
-            <File>
-              <FileName>lib_funcs.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\C-Codes\lib_funcs.c</FilePath>
+              <FilePath>..\C-Codes\Buffer_and_DataParsing.c</FilePath>
             </File>
             <File>
               <FileName>GPS.c</FileName>
@@ -444,9 +439,34 @@
               <FilePath>..\C-Codes\GPS.c</FilePath>
             </File>
             <File>
+              <FileName>GSM.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\C-Codes\GSM.c</FilePath>
+            </File>
+            <File>
+              <FileName>IMU.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\C-Codes\IMU.c</FilePath>
+            </File>
+            <File>
+              <FileName>lib_funcs.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\C-Codes\lib_funcs.c</FilePath>
+            </File>
+            <File>
               <FileName>LM35.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\C-Codes\LM35.c</FilePath>
+            </File>
+            <File>
+              <FileName>main.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\C-Codes\main.c</FilePath>
+            </File>
+            <File>
+              <FileName>WiFi.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\C-Codes\WiFi.c</FilePath>
             </File>
           </Files>
         </Group>
