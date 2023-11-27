@@ -6,11 +6,13 @@
 #include <Arduino_JSON.h>
 #include <Wire.h>
 #include <MPU6050.h>
+
 // #include "arduino_secrets.h" 
 
 MPU6050 mpu;
 
-
+const int sensorPin = 2;
+const int lm35Pin = A0;
 
 char ssid[] = "vivo-1906";        // your network SSID (name)
 char pass[] = "Siddhesh@5449";        // your network password (use for WPA, or use as key for WEP)
@@ -32,6 +34,7 @@ void setup() {
   Serial.begin(9600);
   Wire.begin();
   mpu.initialize();
+  pinMode(sensorPin, INPUT);
   
   // Verify connection
   Serial.println(mpu.testConnection() ? "MPU6050 connection successful" : "MPU6050 connection failed");
@@ -75,8 +78,8 @@ void setup() {
     // while (1);
     
   } else {
-    accStatus = IMU.accelerationAvailable();
-    gyroStatus = IMU.gyroscopeAvailable();
+    // accStatus = IMU.accelerationAvailable();
+    // gyroStatus = IMU.gyroscopeAvailable();
     imuInitialized = true;
 
   }
@@ -91,10 +94,15 @@ void loop() {
       
   int16_t accX, accY, accZ, gyX, gyY, gyZ;
   mpu.getMotion6(&accX, &accY, &accZ, &gyX, &gyY, &gyZ);
+  int vib = digitalRead(sensorPin);
+  int sensorValue = analogRead(lm35Pin);
+
+  // Convert the analog voltage to temperature in degrees Celsius
+  float temperatureC = (sensorValue * 5.0 / 1024) * 100;
  
 
   // Check if the acceleration or gyroscope values exceed certain thresholds
-  if (abs(accX) > 20 || abs(accY) > 20 || abs(accZ) > 20 || abs(gyX) > 100 || abs(gyY) > 100 || abs(gyZ) > 100) {
+  if (abs(accX) > 20 || abs(accY) > 20 || abs(accZ) > 20 || abs(gyX) > 100 || abs(gyY) > 100 || abs(gyZ) > 100 || temperatureC>80) {
     
     // Danger detected
     isDangerDetected = true;
@@ -112,6 +120,8 @@ void loop() {
   data["gyX"]=gyX; 
   data["gyY"]=gyY; 
   data["gyZ"]=gyZ;
+  data["Temperature"] = temperatureC;  
+  data["Vibration"] = vib;
   data["accStatus"] = accStatus;
   data["gyroStatus"] = gyroStatus;
   data["danger"] = isDangerDetected;
