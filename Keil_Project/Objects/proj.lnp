@@ -1,7 +1,6 @@
 --cpu ARM7TDMI
 ".\objects\startup.o"
 ".\objects\buffer_and_dataparsing.o"
-".\objects\gps.o"
 ".\objects\gsm.o"
 ".\objects\imu.o"
 ".\objects\lib_funcs.o"

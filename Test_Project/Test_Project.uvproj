@@ -10,7 +10,6 @@
       <TargetName>Target 1</TargetName>
       <ToolsetNumber>0x4</ToolsetNumber>
       <ToolsetName>ARM-ADS</ToolsetName>
-      <pCCUsed>5060960::V5.06 update 7 (build 960)::.\ARM_Compiler_5.06u7</pCCUsed>
       <uAC6>0</uAC6>
       <TargetOption>
         <TargetCommonOption>
@@ -47,7 +46,7 @@
             <InvalidFlash>1</InvalidFlash>
           </TargetStatus>
           <OutputDirectory>.\Objects\</OutputDirectory>
-          <OutputName>proj</OutputName>
+          <OutputName>Test_Project</OutputName>
           <CreateExecutable>1</CreateExecutable>
           <CreateLib>0</CreateLib>
           <CreateHexFile>0</CreateHexFile>
@@ -299,17 +298,17 @@
                 <Size>0x0</Size>
               </XRAM>
               <OCR_RVCT1>
-                <Type>1</Type>
+                <Type>0</Type>
                 <StartAddress>0x0</StartAddress>
                 <Size>0x0</Size>
               </OCR_RVCT1>
               <OCR_RVCT2>
-                <Type>1</Type>
+                <Type>0</Type>
                 <StartAddress>0x0</StartAddress>
                 <Size>0x0</Size>
               </OCR_RVCT2>
               <OCR_RVCT3>
-                <Type>1</Type>
+                <Type>0</Type>
                 <StartAddress>0x0</StartAddress>
                 <Size>0x0</Size>
               </OCR_RVCT3>
@@ -319,7 +318,7 @@
                 <Size>0x80000</Size>
               </OCR_RVCT4>
               <OCR_RVCT5>
-                <Type>1</Type>
+                <Type>0</Type>
                 <StartAddress>0x0</StartAddress>
                 <Size>0x0</Size>
               </OCR_RVCT5>
@@ -401,7 +400,7 @@
             </VariousControls>
           </Aads>
           <LDads>
-            <umfTarg>0</umfTarg>
+            <umfTarg>1</umfTarg>
             <Ropi>0</Ropi>
             <Rwpi>0</Rwpi>
             <noStLib>0</noStLib>
@@ -429,44 +428,9 @@
               <FilePath>.\Startup.s</FilePath>
             </File>
             <File>
-              <FileName>Buffer_and_DataParsing.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\C-Codes\Buffer_and_DataParsing.c</FilePath>
-            </File>
-            <File>
-              <FileName>GSM.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\C-Codes\GSM.c</FilePath>
-            </File>
-            <File>
-              <FileName>IMU.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\C-Codes\IMU.c</FilePath>
-            </File>
-            <File>
-              <FileName>lib_funcs.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\C-Codes\lib_funcs.c</FilePath>
-            </File>
-            <File>
-              <FileName>LM35.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\C-Codes\LM35.c</FilePath>
-            </File>
-            <File>
               <FileName>main.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\C-Codes\main.c</FilePath>
-            </File>
-            <File>
-              <FileName>WiFi.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\C-Codes\WiFi.c</FilePath>
-            </File>
-            <File>
-              <FileName>GPS.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>..\C-Codes\GPS.h</FilePath>
+              <FilePath>.\main.c</FilePath>
             </File>
           </Files>
         </Group>

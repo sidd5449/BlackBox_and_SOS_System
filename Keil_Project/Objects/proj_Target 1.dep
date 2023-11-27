@@ -1,37 +1,34 @@
 Dependencies for Project 'proj', Target 'Target 1': (DO NOT MODIFY !)
 CompilerVersion: 5060960::V5.06 update 7 (build 960)::.\ARM_Compiler_5.06u7
-F (.\Startup.s)(0x559CFDE8)(--cpu ARM7TDMI -g --apcs=interwork -IC:\Keil_v5\ARM\RV31\INC-IC:\Keil_v5\ARM\INC\Philips--pd "__UVISION_VERSION SETA 538"--list .\listings\startup.lst --xref -o .\objects\startup.o --depend .\objects\startup.d)
-F (..\C-Codes\Buffer_and_DataParsing.c)(0x6543591B)(--c99 --gnu -c --cpu ARM7TDMI -g -O0 --apcs=interwork --split_sections-IC:\Keil_v5\ARM\RV31\INC-IC:\Keil_v5\ARM\INC\Philips-D__UVISION_VERSION="538"-o .\objects\buffer_and_dataparsing.o --omf_browse .\objects\buffer_and_dataparsing.crf --depend .\objects\buffer_and_dataparsing.d)
-F (..\C-Codes\GPS.c)(0x655B1E80)(--c99 --gnu -c --cpu ARM7TDMI -g -O0 --apcs=interwork --split_sections-IC:\Keil_v5\ARM\RV31\INC-IC:\Keil_v5\ARM\INC\Philips-D__UVISION_VERSION="538"-o .\objects\gps.o --omf_browse .\objects\gps.crf --depend .\objects\gps.d)
+F (.\Startup.s)(0x655B36AA)(--cpu ARM7TDMI -g --apcs=interwork -IC:\Keil_v5\ARM\RV31\INC-IC:\Keil_v5\ARM\INC\Philips--pd "__UVISION_VERSION SETA 538"--list .\listings\startup.lst --xref -o .\objects\startup.o --depend .\objects\startup.d)
+F (..\C-Codes\Buffer_and_DataParsing.c)(0x655B36AA)(--c99 --gnu -c --cpu ARM7TDMI -g -O0 --apcs=interwork --split_sections-IC:\Keil_v5\ARM\RV31\INC-IC:\Keil_v5\ARM\INC\Philips-D__UVISION_VERSION="538"-o .\objects\buffer_and_dataparsing.o --omf_browse .\objects\buffer_and_dataparsing.crf --depend .\objects\buffer_and_dataparsing.d)
+F (..\C-Codes\GSM.c)(0x655B36AA)(--c99 --gnu -c --cpu ARM7TDMI -g -O0 --apcs=interwork --split_sections-IC:\Keil_v5\ARM\RV31\INC-IC:\Keil_v5\ARM\INC\Philips-D__UVISION_VERSION="538"-o .\objects\gsm.o --omf_browse .\objects\gsm.crf --depend .\objects\gsm.d)
 I (C:\Keil_v5\ARM\INC\Philips\lpc214x.h)(0x559CFE30)
-I (C:\Keil_v5\ARM\ARM_Compiler_5.06u7\include\string.h)(0x5E8E5FEA)
-I (C:\Keil_v5\ARM\ARM_Compiler_5.06u7\include\stdio.h)(0x5E8E5FEA)
-F (..\C-Codes\GSM.c)(0x655B1F2B)(--c99 --gnu -c --cpu ARM7TDMI -g -O0 --apcs=interwork --split_sections-IC:\Keil_v5\ARM\RV31\INC-IC:\Keil_v5\ARM\INC\Philips-D__UVISION_VERSION="538"-o .\objects\gsm.o --omf_browse .\objects\gsm.crf --depend .\objects\gsm.d)
-I (C:\Keil_v5\ARM\INC\Philips\lpc214x.h)(0x559CFE30)
-F (..\C-Codes\IMU.c)(0x655B1F2B)(--c99 --gnu -c --cpu ARM7TDMI -g -O0 --apcs=interwork --split_sections-IC:\Keil_v5\ARM\RV31\INC-IC:\Keil_v5\ARM\INC\Philips-D__UVISION_VERSION="538"-o .\objects\imu.o --omf_browse .\objects\imu.crf --depend .\objects\imu.d)
+F (..\C-Codes\IMU.c)(0x655B36AA)(--c99 --gnu -c --cpu ARM7TDMI -g -O0 --apcs=interwork --split_sections-IC:\Keil_v5\ARM\RV31\INC-IC:\Keil_v5\ARM\INC\Philips-D__UVISION_VERSION="538"-o .\objects\imu.o --omf_browse .\objects\imu.crf --depend .\objects\imu.d)
 I (C:\Keil_v5\ARM\INC\Philips\lpc214x.h)(0x559CFE30)
 I (C:\Keil_v5\ARM\ARM_Compiler_5.06u7\include\stdint.h)(0x5E8E5FEA)
 I (C:\Keil_v5\ARM\ARM_Compiler_5.06u7\include\stdio.h)(0x5E8E5FEA)
-F (..\C-Codes\lib_funcs.c)(0x65448E07)(--c99 --gnu -c --cpu ARM7TDMI -g -O0 --apcs=interwork --split_sections-IC:\Keil_v5\ARM\RV31\INC-IC:\Keil_v5\ARM\INC\Philips-D__UVISION_VERSION="538"-o .\objects\lib_funcs.o --omf_browse .\objects\lib_funcs.crf --depend .\objects\lib_funcs.d)
+F (..\C-Codes\lib_funcs.c)(0x655B36AA)(--c99 --gnu -c --cpu ARM7TDMI -g -O0 --apcs=interwork --split_sections-IC:\Keil_v5\ARM\RV31\INC-IC:\Keil_v5\ARM\INC\Philips-D__UVISION_VERSION="538"-o .\objects\lib_funcs.o --omf_browse .\objects\lib_funcs.crf --depend .\objects\lib_funcs.d)
 I (C:\Keil_v5\ARM\INC\Philips\lpc214x.h)(0x559CFE30)
 I (C:\Keil_v5\ARM\ARM_Compiler_5.06u7\include\stdio.h)(0x5E8E5FEA)
-I (..\C-Codes\lib_funcs.h)(0x65448E07)
-F (..\C-Codes\LM35.c)(0x655B2042)(--c99 --gnu -c --cpu ARM7TDMI -g -O0 --apcs=interwork --split_sections-IC:\Keil_v5\ARM\RV31\INC-IC:\Keil_v5\ARM\INC\Philips-D__UVISION_VERSION="538"-o .\objects\lm35.o --omf_browse .\objects\lm35.crf --depend .\objects\lm35.d)
+I (..\C-Codes\lib_funcs.h)(0x655B36AA)
+F (..\C-Codes\LM35.c)(0x655B36AA)(--c99 --gnu -c --cpu ARM7TDMI -g -O0 --apcs=interwork --split_sections-IC:\Keil_v5\ARM\RV31\INC-IC:\Keil_v5\ARM\INC\Philips-D__UVISION_VERSION="538"-o .\objects\lm35.o --omf_browse .\objects\lm35.crf --depend .\objects\lm35.d)
 I (C:\Keil_v5\ARM\INC\Philips\lpc214x.h)(0x559CFE30)
 I (C:\Keil_v5\ARM\ARM_Compiler_5.06u7\include\stdio.h)(0x5E8E5FEA)
-I (..\C-Codes\lib_funcs.h)(0x65448E07)
-F (..\C-Codes\main.c)(0x655B261B)(--c99 --gnu -c --cpu ARM7TDMI -g -O0 --apcs=interwork --split_sections-IC:\Keil_v5\ARM\RV31\INC-IC:\Keil_v5\ARM\INC\Philips-D__UVISION_VERSION="538"-o .\objects\main.o --omf_browse .\objects\main.crf --depend .\objects\main.d)
+I (..\C-Codes\lib_funcs.h)(0x655B36AA)
+F (..\C-Codes\main.c)(0x655B3A8E)(--c99 --gnu -c --cpu ARM7TDMI -g -O0 --apcs=interwork --split_sections-IC:\Keil_v5\ARM\RV31\INC-IC:\Keil_v5\ARM\INC\Philips-D__UVISION_VERSION="538"-o .\objects\main.o --omf_browse .\objects\main.crf --depend .\objects\main.d)
 I (C:\Keil_v5\ARM\INC\Philips\lpc214x.h)(0x559CFE30)
 I (C:\Keil_v5\ARM\ARM_Compiler_5.06u7\include\stdio.h)(0x5E8E5FEA)
 I (C:\Keil_v5\ARM\ARM_Compiler_5.06u7\include\string.h)(0x5E8E5FEA)
 I (C:\Keil_v5\ARM\ARM_Compiler_5.06u7\include\stdint.h)(0x5E8E5FEA)
-I (..\C-Codes\GPS.c)(0x655B1E80)
-I (..\C-Codes\GSM.c)(0x655B1F2B)
-I (..\C-Codes\IMU.c)(0x655B1F2B)
-I (..\C-Codes\LM35.c)(0x655B2042)
-I (..\C-Codes\lib_funcs.h)(0x65448E07)
-I (..\C-Codes\WiFi.c)(0x655B25D3)
-F (..\C-Codes\WiFi.c)(0x655B25D3)(--c99 --gnu -c --cpu ARM7TDMI -g -O0 --apcs=interwork --split_sections-IC:\Keil_v5\ARM\RV31\INC-IC:\Keil_v5\ARM\INC\Philips-D__UVISION_VERSION="538"-o .\objects\wifi.o --omf_browse .\objects\wifi.crf --depend .\objects\wifi.d)
+I (..\C-Codes\GPS.h)(0x655B3A8E)
+I (..\C-Codes\GSM.c)(0x655B36AA)
+I (..\C-Codes\IMU.c)(0x655B36AA)
+I (..\C-Codes\LM35.c)(0x655B36AA)
+I (..\C-Codes\lib_funcs.h)(0x655B36AA)
+I (..\C-Codes\WiFi.c)(0x655B36AA)
+F (..\C-Codes\WiFi.c)(0x655B36AA)(--c99 --gnu -c --cpu ARM7TDMI -g -O0 --apcs=interwork --split_sections-IC:\Keil_v5\ARM\RV31\INC-IC:\Keil_v5\ARM\INC\Philips-D__UVISION_VERSION="538"-o .\objects\wifi.o --omf_browse .\objects\wifi.crf --depend .\objects\wifi.d)
 I (C:\Keil_v5\ARM\INC\Philips\lpc214x.h)(0x559CFE30)
 I (C:\Keil_v5\ARM\ARM_Compiler_5.06u7\include\stdio.h)(0x5E8E5FEA)
 I (C:\Keil_v5\ARM\ARM_Compiler_5.06u7\include\string.h)(0x5E8E5FEA)
+F (..\C-Codes\GPS.h)(0x655B3A8E)()

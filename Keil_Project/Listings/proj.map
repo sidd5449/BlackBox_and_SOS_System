@@ -12,18 +12,6 @@ Section Cross References
     startup.o(.text) refers (Special) to heapauxi.o(.text) for __use_two_region_memory
     startup.o(.text) refers to startup.o(HEAP) for Heap_Mem
     startup.o(.text) refers to startup.o(STACK) for Stack_Mem
-    gps.o(i.UART1_SendString) refers to gps.o(i.UART1_SendChar) for UART1_SendChar
-    gps.o(i.UART1_SendString) refers to main.o(i.UART1_SendChar) for UART1_SendChar
-    gps.o(i.getGPS) refers to _scanf_int.o(.text) for _scanf_int
-    gps.o(i.getGPS) refers to _scanf_str.o(.text) for _scanf_string
-    gps.o(i.getGPS) refers to gps.o(i.UART1_Init) for UART1_Init
-    gps.o(i.getGPS) refers to main.o(i.UART1_Init) for UART1_Init
-    gps.o(i.getGPS) refers to gps.o(i.UART1_ReadChar) for UART1_ReadChar
-    gps.o(i.getGPS) refers to main.o(i.UART1_ReadChar) for UART1_ReadChar
-    gps.o(i.getGPS) refers to rt_memclr_w.o(.text) for __aeabi_memclr4
-    gps.o(i.getGPS) refers to strncmp.o(.text) for strncmp
-    gps.o(i.getGPS) refers to strlen.o(.text) for strlen
-    gps.o(i.getGPS) refers to __0sscanf.o(.text) for __0sscanf
     gsm.o(i.GSM_SendSMS) refers to gsm.o(i.tx_str) for tx_str
     gsm.o(i.GSM_SendSMS) refers to main.o(i.tx_str) for tx_str
     gsm.o(i.GSM_SendSMS) refers to gsm.o(i.tx) for tx
@@ -127,22 +115,10 @@ Section Cross References
     main.o(i.ReadTemperature) refers to lib_funcs.o(i.delayMS) for delayMS
     main.o(i.UART0_SendString) refers to imu.o(i.UART0_TxChar) for UART0_TxChar
     main.o(i.UART0_SendString) refers to main.o(i.UART0_TxChar) for UART0_TxChar
-    main.o(i.UART1_SendString) refers to gps.o(i.UART1_SendChar) for UART1_SendChar
-    main.o(i.UART1_SendString) refers to main.o(i.UART1_SendChar) for UART1_SendChar
     main.o(i.callingGSM_from_mainModule) refers to gsm.o(i.ser_init) for ser_init
     main.o(i.callingGSM_from_mainModule) refers to main.o(i.ser_init) for ser_init
     main.o(i.callingGSM_from_mainModule) refers to gsm.o(i.GSM_SendSMS) for GSM_SendSMS
     main.o(i.callingGSM_from_mainModule) refers to main.o(i.GSM_SendSMS) for GSM_SendSMS
-    main.o(i.getGPS) refers to _scanf_int.o(.text) for _scanf_int
-    main.o(i.getGPS) refers to _scanf_str.o(.text) for _scanf_string
-    main.o(i.getGPS) refers to gps.o(i.UART1_Init) for UART1_Init
-    main.o(i.getGPS) refers to main.o(i.UART1_Init) for UART1_Init
-    main.o(i.getGPS) refers to gps.o(i.UART1_ReadChar) for UART1_ReadChar
-    main.o(i.getGPS) refers to main.o(i.UART1_ReadChar) for UART1_ReadChar
-    main.o(i.getGPS) refers to rt_memclr_w.o(.text) for __aeabi_memclr4
-    main.o(i.getGPS) refers to strncmp.o(.text) for strncmp
-    main.o(i.getGPS) refers to strlen.o(.text) for strlen
-    main.o(i.getGPS) refers to __0sscanf.o(.text) for __0sscanf
     main.o(i.readIMU) refers to _printf_percent.o(.ARM.Collect$$_printf_percent$$00000000) for _printf_percent
     main.o(i.readIMU) refers to _printf_f.o(.ARM.Collect$$_printf_percent$$00000003) for _printf_f
     main.o(i.readIMU) refers to _printf_c.o(.ARM.Collect$$_printf_percent$$00000013) for _printf_c
@@ -175,8 +151,6 @@ Section Cross References
     main.o(i.sendJson) refers to wifi.o(i.UART0_Init) for UART0_Init
     main.o(i.sendJson) refers to imu.o(i.UART0_SendString) for UART0_SendString
     main.o(i.sendJson) refers to main.o(i.UART0_SendString) for UART0_SendString
-    main.o(i.sendJson) refers to gps.o(i.delay) for delay
-    main.o(i.sendJson) refers to main.o(i.delay) for delay
     main.o(i.sendJson) refers to noretval__2snprintf.o(.text) for __2snprintf
     main.o(i.sendJson) refers to strlen.o(.text) for strlen
     main.o(i.sendJson) refers to main.o(i.UART0_SendChar) for UART0_SendChar
@@ -187,8 +161,6 @@ Section Cross References
     wifi.o(i.sendJson) refers to wifi.o(i.UART0_Init) for UART0_Init
     wifi.o(i.sendJson) refers to imu.o(i.UART0_SendString) for UART0_SendString
     wifi.o(i.sendJson) refers to main.o(i.UART0_SendString) for UART0_SendString
-    wifi.o(i.sendJson) refers to gps.o(i.delay) for delay
-    wifi.o(i.sendJson) refers to main.o(i.delay) for delay
     wifi.o(i.sendJson) refers to noretval__2snprintf.o(.text) for __2snprintf
     wifi.o(i.sendJson) refers to strlen.o(.text) for strlen
     wifi.o(i.sendJson) refers to main.o(i.UART0_SendChar) for UART0_SendChar
@@ -244,11 +216,6 @@ Section Cross References
     _printf_c.o(.ARM.Collect$$_printf_percent$$00000013) refers (Weak) to _printf_char.o(.text) for _printf_char
     _printf_f.o(.ARM.Collect$$_printf_percent$$00000003) refers (Weak) to printf1.o(x$fpl$printf1) for _printf_fp_dec
     _printf_percent.o(.ARM.Collect$$_printf_percent$$00000000) refers (Special) to _printf_percent_end.o(.ARM.Collect$$_printf_percent$$00000017) for _printf_percent_end
-    __0sscanf.o(.text) refers to scanf_char.o(.text) for __vfscanf_char
-    __0sscanf.o(.text) refers to _sgetc.o(.text) for _sgetc
-    _scanf_int.o(.text) refers to __printf.o(i.__ARM_common_call_via_r1) for __ARM_common_call_via_r1
-    _scanf_int.o(.text) refers to _chval.o(.text) for _chval
-    _scanf_str.o(.text) refers to __printf.o(i.__ARM_common_call_via_r1) for __ARM_common_call_via_r1
     __main.o(!!!main) refers to __rtentry.o(.ARM.Collect$$rtentry$$00000000) for __rt_entry
     d2f.o(x$fpl$d2f) refers (Special) to usenofp.o(x$fpl$usenofp) for __I$use$fp
     d2f.o(x$fpl$d2f) refers to fretinf.o(x$fpl$fretinf) for __fpl_fretinf
@@ -305,8 +272,6 @@ Section Cross References
     _printf_char_file.o(.text) refers to _printf_char_common.o(.text) for _printf_char_common
     _printf_char_file.o(.text) refers to ferror.o(.text) for ferror
     _printf_char_file.o(.text) refers to lib_funcs.o(i.fputc) for fputc
-    scanf_char.o(.text) refers to _scanf.o(.text) for __vfscanf
-    scanf_char.o(.text) refers to isspace.o(.text) for isspace
     dnaninf.o(x$fpl$dnaninf) refers (Special) to usenofp.o(x$fpl$usenofp) for __I$use$fp
     dretinf.o(x$fpl$dretinf) refers (Special) to usenofp.o(x$fpl$usenofp) for __I$use$fp
     fnaninf.o(x$fpl$fnaninf) refers (Special) to usenofp.o(x$fpl$usenofp) for __I$use$fp
@@ -325,14 +290,9 @@ Section Cross References
     __rtentry4.o(.ARM.exidx) refers to __rtentry4.o(.ARM.Collect$$rtentry$$00000004) for .ARM.Collect$$rtentry$$00000004
     rt_locale.o(.text) refers to rt_locale.o(.bss) for __rt_locale_data
     rt_locale_intlibspace.o(.text) refers to libspace.o(.bss) for __libspace_start
-    isspace.o(.text) refers to rt_ctype_table.o(.text) for __rt_ctype_table
     _printf_fp_infnan.o(.text) refers to __printf.o(i.__ARM_common_call_via_r2) for __ARM_common_call_via_r2
     __printf_nopercent.o(.text) refers to __printf_nopercent.o(i.__ARM_common_call_via_r7) for __ARM_common_call_via_r7
     __printf_nopercent.o(.text) refers to __printf_nopercent.o(i.__ARM_common_call_via_r5) for __ARM_common_call_via_r5
-    _scanf.o(.text) refers to __printf.o(i.__ARM_common_call_via_r2) for __ARM_common_call_via_r2
-    _scanf.o(.text) refers to __printf.o(i.__ARM_common_call_via_r1) for __ARM_common_call_via_r1
-    _scanf.o(.text) refers (Weak) to _scanf_int.o(.text) for _scanf_int
-    _scanf.o(.text) refers (Weak) to _scanf_str.o(.text) for _scanf_string
     bigflt0.o(.text) refers (Special) to usenofp.o(x$fpl$usenofp) for __I$use$fp
     bigflt0.o(.text) refers to aeabi_sdiv.o(.text) for __aeabi_idivmod
     bigflt0.o(.text) refers to btod.o(CL$$btod_emul) for _btod_emul
@@ -370,8 +330,6 @@ Section Cross References
     libspace.o(.text) refers to libspace.o(.bss) for __libspace_start
     sys_stackheap_outer.o(.text) refers to libspace.o(.text) for __user_perproc_libspace
     sys_stackheap_outer.o(.text) refers to startup.o(.text) for __user_initial_stackheap
-    rt_ctype_table.o(.text) refers to rt_locale_intlibspace.o(.text) for __rt_locale
-    rt_ctype_table.o(.text) refers to lc_ctype_c.o(locale$$code) for _get_lc_ctype
     exit.o(.text) refers to rtexit.o(.ARM.Collect$$rtexit$$00000000) for __rt_exit
     aeabi_sdiv.o(.text_udiv) refers to aeabi_sdiv.o(.text) for __arm_div2
     aeabi_sdiv_div0.o(.text_udiv) refers to aeabi_sdiv_div0.o(.text) for __arm_div2
@@ -400,7 +358,6 @@ Section Cross References
     libinit2.o(.ARM.Collect$$libinit$$0000000F) refers (Weak) to rt_locale_intlibspace.o(.text) for __rt_locale
     libinit2.o(.ARM.Collect$$libinit$$00000010) refers to libinit2.o(.ARM.Collect$$libinit$$0000000F) for .ARM.Collect$$libinit$$0000000F
     libinit2.o(.ARM.Collect$$libinit$$00000012) refers to libinit2.o(.ARM.Collect$$libinit$$0000000F) for .ARM.Collect$$libinit$$0000000F
-    libinit2.o(.ARM.Collect$$libinit$$00000012) refers (Weak) to lc_ctype_c.o(locale$$code) for _get_lc_ctype
     libinit2.o(.ARM.Collect$$libinit$$00000014) refers to libinit2.o(.ARM.Collect$$libinit$$0000000F) for .ARM.Collect$$libinit$$0000000F
     libinit2.o(.ARM.Collect$$libinit$$00000016) refers to libinit2.o(.ARM.Collect$$libinit$$0000000F) for .ARM.Collect$$libinit$$0000000F
     libinit2.o(.ARM.Collect$$libinit$$00000016) refers (Weak) to lc_numeric_c.o(locale$$code) for _get_lc_numeric
@@ -415,10 +372,6 @@ Section Cross References
     rtexit.o(.ARM.exidx) refers (Special) to rtexit2.o(.ARM.Collect$$rtexit$$00000002) for __rt_exit_prels_1
     rtexit.o(.ARM.exidx) refers to rtexit.o(.ARM.Collect$$rtexit$$00000000) for .ARM.Collect$$rtexit$$00000000
     aeabi_idiv0_sigfpe.o(.text) refers to rt_div0.o(.text) for __rt_div0
-    lc_ctype_c.o(locale$$data) refers (Special) to libinit2.o(.ARM.Collect$$libinit$$00000012) for __rt_lib_init_lc_ctype_2
-    lc_ctype_c.o(locale$$code) refers (Special) to libinit2.o(.ARM.Collect$$libinit$$00000012) for __rt_lib_init_lc_ctype_2
-    lc_ctype_c.o(locale$$code) refers to strcmp.o(.text) for strcmp
-    lc_ctype_c.o(locale$$code) refers to lc_ctype_c.o(locale$$data) for __lcctype_c_name
     argv_veneer.o(.emb_text) refers to no_argv.o(.text) for __ARM_get_argv
     rtexit2.o(.ARM.Collect$$rtexit$$00000003) refers to libshutdown.o(.ARM.Collect$$libshutdown$$00000000) for __rt_lib_shutdown
     rtexit2.o(.ARM.Collect$$rtexit$$00000004) refers to sys_exit.o(.text) for _sys_exit
