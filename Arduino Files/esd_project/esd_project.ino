@@ -1,26 +1,23 @@
 // Final code , don't try to change anyline in the code 
 
 #include <SPI.h>
-#include <WiFiNINA.h>
-#include <Arduino_LSM6DS3.h>
+// #include <Arduino_LSM6DS3.h>
 #include <Arduino_JSON.h>
 #include <Wire.h>
 #include <MPU6050.h>
-
+#include <SoftwareSerial.h>
+SoftwareSerial esp8266(2, 3); // RX, TX
 // #include "arduino_secrets.h" 
 
 MPU6050 mpu;
 
-const int sensorPin = 2;
-const int lm35Pin = A0;
+const int sensorPin = A7;
+const int lm35Pin = A5;
 
 char ssid[] = "vivo-1906";        // your network SSID (name)
 char pass[] = "Siddhesh@5449";        // your network password (use for WPA, or use as key for WEP)
 int keyIndex = 0;                 // your network key index number (needed only for WEP)
 
-int status = WL_IDLE_STATUS;
-
-WiFiServer server(80);
 
 bool imuInitialized = false;
 bool accStatus = true, gyroStatus = true;
@@ -33,59 +30,60 @@ void setup() {
   //Initialize serial and wait for port to open:
   Serial.begin(9600);
   Wire.begin();
-  mpu.initialize();
   pinMode(sensorPin, INPUT);
+  esp8266.begin(9600);
+  Serial.println("ESP8266 Communication Established!");
   
-  // Verify connection
+  mpu.initialize();
   Serial.println(mpu.testConnection() ? "MPU6050 connection successful" : "MPU6050 connection failed");
 
   // check for the WiFi module:
-  if (WiFi.status() == WL_NO_MODULE) {
-    Serial.println("Communication with WiFi module failed!");
-    // don't continue
-    while (true);
-  }
+  // if (WiFi.status() == WL_NO_MODULE) {
+  //   Serial.println("Communication with WiFi module failed!");
+  //   // don't continue
+  //   while (true);
+  // }
 
-  String fv = WiFi.firmwareVersion();
-  if (fv < WIFI_FIRMWARE_LATEST_VERSION) {
-    Serial.println("Please upgrade the firmware");
-  }
+  // String fv = WiFi.firmwareVersion();
+  // if (fv < WIFI_FIRMWARE_LATEST_VERSION) {
+  //   Serial.println("Please upgrade the firmware");
+  // }
 
   // attempt to connect to WiFi network:
   Serial.print("Creating access point named: ");
   Serial.println(ssid);
-  status = WiFi.beginAP(ssid, pass);
-  if (status != WL_AP_LISTENING) {
-    Serial.println("Creating access point failed");
-    // don't continue
-    while (true);
-    }
+  // status = WiFi.beginAP(ssid, pass);
+  // if (status != WL_AP_LISTENING) {
+  //   Serial.println("Creating access point failed");
+  //   // don't continue
+  //   while (true);
+  //   }
 
     // wait 10 seconds for connection:
     delay(10000);
 
 
 // Begin the server  
-  server.begin();
+  // server.begin();
 
 // Initialize the IMU  
-  if (!IMU.begin()) {
-    Serial.println("Failed to initialize IMU!");
-    accStatus = false;
-    gyroStatus = false;
-    imuInitialized = false;
+  // if (!IMU.begin()) {
+  //   Serial.println("Failed to initialize IMU!");
+  //   accStatus = false;
+  //   gyroStatus = false;
+  //   imuInitialized = false;
 
-    // while (1);
+  //   // while (1);
     
-  } else {
-    // accStatus = IMU.accelerationAvailable();
-    // gyroStatus = IMU.gyroscopeAvailable();
-    imuInitialized = true;
+  // } else {
+  //   // accStatus = IMU.accelerationAvailable();
+  //   // gyroStatus = IMU.gyroscopeAvailable();
+  //   imuInitialized = true;
 
-  }
+  // }
     
 // Print the WiFi status
-  printWifiStatus();
+  // printWifiStatus();
 }
 
 
@@ -126,78 +124,55 @@ void loop() {
   data["gyroStatus"] = gyroStatus;
   data["danger"] = isDangerDetected;
 
+  
+
   // Convert the JSON object to a string
   String dataStr = JSON.stringify(data);
   
   // Listen for incoming clients
-  WiFiClient client = server.available();
-  if (client) {
-    Serial.println("new client");
-    
-    // an HTTP request ends with a blank line
-    boolean currentLineIsBlank = true;
-    while (client.connected()) {
-      if (client.available()) {
-        char c = client.read();
-        Serial.write(c);
-        
-        // if you've gotten to the end of the line (received a newline
-        // character) and the line is blank, the HTTP request has ended,
-        // so you can send a reply
 
-        if (c == '\n' && currentLineIsBlank) {
-          
-          // send a standard HTTP response header
-          client.println("HTTP/1.1 200 OK");
-          client.println("Content-Type: text/html");
-          client.println("Connection: close");        // the connection will be closed after completion of the response
-          client.println("Refresh: 5");               // refresh the page automatically every 5 sec
-          client.println();
-          
-          // client.println("<!DOCTYPE HTML>");
-          // client.println("<html>");
-          
-          // output the value of each analog input pin
-          client.print(dataStr);
-          
-          //   client.println("<br />");
-          // client.println("</html>");
-          break;
-        }
-        
-        if (c == '\n') {
-          // you're starting a new line
-          currentLineIsBlank = true;
-        } else if (c != '\r') {
-          // you've gotten a character on the current line
-          currentLineIsBlank = false;
-        }
-      }
-    }
-    
-    // give the web browser time to receive the data
-    delay(1);
+  sendData(dataStr);
 
-    // close the connection:
-    client.stop();
-    Serial.println("client disconnected");
-  }
+  delay(1);
+  
 }
 
-void printWifiStatus() {
+// void printWifiStatus() {
   
-  // print the SSID of the network you're attached to:
-  Serial.print("SSID: ");
-  Serial.println(WiFi.SSID());
+//   // print the SSID of the network you're attached to:
+//   Serial.print("SSID: ");
+//   Serial.println(WiFi.SSID());
 
-  // print your board's IP address:
-  IPAddress ip = WiFi.localIP();
-  Serial.print("IP Address: ");
-  Serial.println(ip);
+//   // print your board's IP address:
+//   IPAddress ip = WiFi.localIP();
+//   Serial.print("IP Address: ");
+//   Serial.println(ip);
 
-  // print the received signal strength:
-  long rssi = WiFi.RSSI();
-  Serial.print("signal strength (RSSI):");
-  Serial.print(rssi);
-  Serial.println(" dBm");
+//   // print the received signal strength:
+//   long rssi = WiFi.RSSI();
+//   Serial.print("signal strength (RSSI):");
+//   Serial.print(rssi);
+//   Serial.println(" dBm");
+// }
+
+void sendData(String data) {
+  // Send data to ESP8266
+  esp8266.println("AT+CIPSTART=\"TCP\",\"api-endpoint-url\",80");
+  delay(1000);
+
+  String postRequest = "POST /api/endpoint HTTP/1.1\r\n";
+  postRequest += "Host: api-endpoint-url\r\n";
+  postRequest += "Content-Type: application/json\r\n";
+  postRequest += "Content-Length: " + String(data.length()) + "\r\n\r\n";
+  postRequest += data;
+
+  String sendCmd = "AT+CIPSEND=";
+  sendCmd += String(postRequest.length());
+  esp8266.println(sendCmd);
+  delay(1000);
+
+  esp8266.print(postRequest);
+  delay(1000);
+
+  esp8266.println("AT+CIPCLOSE");
 }
