@@ -1,2 +1,2 @@
-#define SECRET_SSID "BlackBox-AP";       
-#define SECRET_PASS "blackbox-123"; 
+#define SECRET_SSID "vivo-1906";       
+#define SECRET_PASS "Siddhesh@5449"; 

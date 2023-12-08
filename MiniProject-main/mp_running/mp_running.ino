@@ -5,22 +5,27 @@
 #include <Arduino_LSM6DS3.h>
 #include <Arduino_JSON.h>
 #include <Wire.h>
-#include <MPU6050.h>
-
+#include <Adafruit_MPU6050.h>
+#include <Adafruit_Sensor.h>
+#include <ArduinoHttpClient.h>
 // please enter your sensitive data in the Secret tab/arduino_secrets.h
 #include "arduino_secrets.h" 
 
 const int analogPinLM35 = A0;
 
-MPU6050 mpu;
+Adafruit_MPU6050 mpu;
 
 char ssid[] = SECRET_SSID;        // your network SSID (name)
 char pass[] = SECRET_PASS;        // your network password (use for WPA, or use as key for WEP)
 int keyIndex = 0;                 // your network key index number (needed only for WEP)
-
+const char serverName[] = "192.168.116.149";  // server name
+int port = 6001;
 int status = WL_IDLE_STATUS;
 
-WiFiServer server(80);
+// WiFiServer server(80);
+WiFiClient wifi;
+HttpClient client = HttpClient( wifi, serverName, port );
+// int status = WL_IDLE_STATUS;
 
 bool imuInitialized = false;
 bool accStatus = true, gyroStatus = true;
@@ -46,37 +51,35 @@ void setup() {
   }
 
   // attempt to connect to WiFi network:
-  Serial.print("Creating access point named: ");
-  Serial.println(ssid);
-  status = WiFi.beginAP(ssid, pass);
-  if (status != WL_AP_LISTENING) {
-    Serial.println("Creating access point failed");
-    // don't continue
-    while (true);
-    }
+  while (WiFi.begin(ssid, pass) != WL_CONNECTED) {
+    delay(1000);
+    Serial.println("Connecting to WiFi...");
+  }
+
+  Serial.println("Connected to WiFi");
 
     // wait 10 seconds for connection:
-    delay(10000);
+    // delay(10000);
 
 
 // Begin the server  
-  server.begin();
+  // server.begin();
 
 // Initialize the IMU  
-  if (!mpu.begin()) {
-    Serial.println("Failed to initialize IMU!");
-    accStatus = false;
-    gyroStatus = false;
-    imuInitialized = false;
+  // if (!mpu.begin()) {
+  //   Serial.println("Failed to initialize IMU!");
+  //   accStatus = false;
+  //   gyroStatus = false;
+  //   imuInitialized = false;
 
-    // while (1);
+  //   // while (1);
     
-  } else {
-    accStatus = true;
-    gyroStatus = true;
-    imuInitialized = true;
+  // } else {
+  //   accStatus = true;
+  //   gyroStatus = true;
+  //   imuInitialized = true;
 
-  }
+  // }
     
 // Print the WiFi status
   printWifiStatus();
@@ -88,14 +91,19 @@ void loop() {
   int sensorValue = analogRead(analogPinLM35);
   float temperature = (sensorValue * 0.48828125);  // LM35 output is in 10mV per degree Celsius
   float accX, accY, accZ, gyX, gyY, gyZ;
+  sensors_event_t a, g, temp;
+  
   if(imuInitialized) {
     
-    accX = mpu.getAccX();
-    accY = mpu.getAccY();
-    accZ = mpu.getAccZ();
-    gyroX = mpu.getGyroX();
-    gyroY = mpu.getGyroY();
-    gyroZ = mpu.getGyroZ();
+    
+    mpu.getEvent(&a, &g, &temp);
+
+    accX = a.acceleration.x;    
+    accY = a.acceleration.y;    
+    accZ = a.acceleration.z;    
+    gyX = g.gyro.x;    
+    gyY = g.gyro.y;    
+    gyZ = g.gyro.z;    
   }
  
 
@@ -127,58 +135,23 @@ void loop() {
   String dataStr = JSON.stringify(data);
   
   // Listen for incoming clients
-  WiFiClient client = server.available();
-  if (client) {
-    Serial.println("new client");
-    
-    // an HTTP request ends with a blank line
-    boolean currentLineIsBlank = true;
-    while (client.connected()) {
-      if (client.available()) {
-        char c = client.read();
-        Serial.write(c);
-        
-        // if you've gotten to the end of the line (received a newline
-        // character) and the line is blank, the HTTP request has ended,
-        // so you can send a reply
+  makePostRequest(dataStr);
+}
+void makePostRequest(String payload) {
+  String contentType = "application/json";
 
-        if (c == '\n' && currentLineIsBlank) {
-          
-          // send a standard HTTP response header
-          client.println("HTTP/1.1 200 OK");
-          client.println("Content-Type: text/html");
-          client.println("Connection: close");        // the connection will be closed after completion of the response
-          client.println("Refresh: 5");               // refresh the page automatically every 5 sec
-          client.println();
-          
-          // client.println("<!DOCTYPE HTML>");
-          // client.println("<html>");
-          
-          // output the value of each analog input pin
-          client.print(dataStr);
-          
-          //   client.println("<br />");
-          // client.println("</html>");
-          break;
-        }
-        
-        if (c == '\n') {
-          // you're starting a new line
-          currentLineIsBlank = true;
-        } else if (c != '\r') {
-          // you've gotten a character on the current line
-          currentLineIsBlank = false;
-        }
-      }
-    }
-    
-    // give the web browser time to receive the data
-    delay(1);
+  client.post( "/post", contentType, payload );
 
-    // close the connection:
-    client.stop();
-    Serial.println("client disconnected");
-  }
+  // read the status code and body of the response
+  int statusCode = client.responseStatusCode();
+  Serial.print( "Status code: " );
+  Serial.println( statusCode );
+  String response = client.responseBody();
+  Serial.print( "Response: " );
+  Serial.println( response );
+
+  Serial.println( "Wait 30 seconds" );
+  delay( 3000 );
 }
 
 void printWifiStatus() {
