@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Data Display</title>
+</head>
+<body>
+  <h1>Data</h1>
+  <ul id="data-list"></ul>
+
+  <script>
+    async function getData() {
+      const response = await fetch('/data');
+      const data = await response.json();
+      
+      const dataList = document.getElementById('data-list');
+      dataList.innerHTML = '';
+      
+      for (const item of data) {
+        const li = document.createElement('li');
+        li.textContent = JSON.stringify(item);
+        dataList.appendChild(li);
+      }
+    }
+    
+    getData();
+    setInterval(getData, 5000);
+  </script>
+</body>
+</html>

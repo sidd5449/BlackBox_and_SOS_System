@@ -1,0 +1,32 @@
+{
+  "expo": {
+    "name": "MiniProjectApp",
+    "slug": "MiniProjectApp",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "userInterfaceStyle": "light",
+    "updates": {
+      "fallbackToCacheTimeout": 0
+    },
+    "assetBundlePatterns": [
+      "**/*"
+    ],
+    "ios": {
+      "supportsTablet": true
+    },
+    "android": {
+      "adaptiveIcon": {
+        "backgroundColor": "#FFFFFF"
+      },
+      "package": "com.sidd5449.MiniProjectApp"
+    },
+    "web": {
+      "favicon": "./assets/favicon.png"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "0adc0aa3-1988-47c5-a49e-f066f3044763"
+      }
+    }
+  }
+}

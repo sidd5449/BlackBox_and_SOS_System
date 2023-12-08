@@ -6,7 +6,7 @@
 #include <Wire.h>
 #include <MPU6050.h>
 #include <SoftwareSerial.h>
-SoftwareSerial esp8266(2, 3); // RX, TX
+SoftwareSerial esp8266(8, 7); // RX, TX
 // #include "arduino_secrets.h" 
 
 MPU6050 mpu;
@@ -14,7 +14,7 @@ MPU6050 mpu;
 const int sensorPin = A7;
 const int lm35Pin = A5;
 
-char ssid[] = "vivo-1906";        // your network SSID (name)
+char ssid[] = "vivo-19";        // your network SSID (name)
 char pass[] = "Siddhesh@5449";        // your network password (use for WPA, or use as key for WEP)
 int keyIndex = 0;                 // your network key index number (needed only for WEP)
 
@@ -50,8 +50,8 @@ void setup() {
   // }
 
   // attempt to connect to WiFi network:
-  Serial.print("Creating access point named: ");
-  Serial.println(ssid);
+  // Serial.print("Creating access point named: ");
+  // Serial.println(ssid);
   // status = WiFi.beginAP(ssid, pass);
   // if (status != WL_AP_LISTENING) {
   //   Serial.println("Creating access point failed");
@@ -157,6 +157,7 @@ void loop() {
 
 void sendData(String data) {
   // Send data to ESP8266
+  esp8266.println("AT+CWJAP='vivo-1906','Siddhesh@5449'");
   esp8266.println("AT+CIPSTART=\"TCP\",\"api-endpoint-url\",80");
   delay(1000);
 
@@ -165,7 +166,7 @@ void sendData(String data) {
   postRequest += "Content-Type: application/json\r\n";
   postRequest += "Content-Length: " + String(data.length()) + "\r\n\r\n";
   postRequest += data;
-
+  
   String sendCmd = "AT+CIPSEND=";
   sendCmd += String(postRequest.length());
   esp8266.println(sendCmd);
