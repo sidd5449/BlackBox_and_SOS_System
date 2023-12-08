@@ -105,15 +105,15 @@ void loop() {
  
 
   // Check if the acceleration or gyroscope values exceed certain thresholds
-  if (abs(accX) > 20 || abs(accY) > 20 || abs(accZ) > 20 || abs(gyX) > 100 || abs(gyY) > 100 || abs(gyZ) > 100) {
-    
-    // Danger detected
-    isDangerDetected = true;
-    
-  } else {
-    // No danger detected
-    isDangerDetected = false;
-  }
+if (abs(accX) > 20 || abs(accY) > 20 || abs(accZ) > 20 || abs(gyroX) > 100 || abs(gyroY) > 100 || abs(gyroZ) > 100) {
+  isDangerDetected = true;
+  
+  // Send SMS
+  sendSMS("Emergency Detected!", "Location: Latitude, Longitude");
+} else {
+  isDangerDetected = false;
+}
+
 
 while (gsmSerial.available()) {
   char c = gsmSerial.read();
@@ -227,4 +227,17 @@ bool readGPSData(float &latitude, float &longitude) {
     }
   }
   return false; // GPS data is not valid or not available
+}
+
+void sendSMS(const char* phoneNumber, const char* message) {
+  gsmSerial.println("AT+CMGF=1");  // Set SMS mode to text
+  delay(1000);
+  gsmSerial.print("AT+CMGS=\"");
+  gsmSerial.print(phoneNumber);
+  gsmSerial.println("\"");
+  delay(1000);
+  gsmSerial.print(message);
+  delay(100);
+  gsmSerial.write(26);  // Send CTRL+Z to indicate the end of the message
+  delay(1000);
 }
