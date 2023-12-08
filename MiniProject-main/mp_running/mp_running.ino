@@ -4,9 +4,15 @@
 #include <WiFiNINA.h>
 #include <Arduino_LSM6DS3.h>
 #include <Arduino_JSON.h>
+#include <Wire.h>
+#include <MPU6050.h>
 
 // please enter your sensitive data in the Secret tab/arduino_secrets.h
 #include "arduino_secrets.h" 
+
+const int analogPinLM35 = A0;
+
+MPU6050 mpu;
 
 char ssid[] = SECRET_SSID;        // your network SSID (name)
 char pass[] = SECRET_PASS;        // your network password (use for WPA, or use as key for WEP)
@@ -57,7 +63,7 @@ void setup() {
   server.begin();
 
 // Initialize the IMU  
-  if (!IMU.begin()) {
+  if (!mpu.begin()) {
     Serial.println("Failed to initialize IMU!");
     accStatus = false;
     gyroStatus = false;
@@ -66,8 +72,8 @@ void setup() {
     // while (1);
     
   } else {
-    accStatus = IMU.accelerationAvailable();
-    gyroStatus = IMU.gyroscopeAvailable();
+    accStatus = true;
+    gyroStatus = true;
     imuInitialized = true;
 
   }
@@ -79,12 +85,17 @@ void setup() {
 
 void loop() {
 // Read the acceleration and gyroscope data
-      
+  int sensorValue = analogRead(analogPinLM35);
+  float temperature = (sensorValue * 0.48828125);  // LM35 output is in 10mV per degree Celsius
   float accX, accY, accZ, gyX, gyY, gyZ;
   if(imuInitialized) {
     
-    IMU.readAcceleration(accX, accY, accZ);
-    IMU.readGyroscope(gyX, gyY, gyZ);
+    accX = mpu.getAccX();
+    accY = mpu.getAccY();
+    accZ = mpu.getAccZ();
+    gyroX = mpu.getGyroX();
+    gyroY = mpu.getGyroY();
+    gyroZ = mpu.getGyroZ();
   }
  
 
@@ -107,6 +118,7 @@ void loop() {
   data["gyX"]=gyX; 
   data["gyY"]=gyY; 
   data["gyZ"]=gyZ;
+  data["temperature"] = temperature;
   data["accStatus"] = accStatus;
   data["gyroStatus"] = gyroStatus;
   data["danger"] = isDangerDetected;
