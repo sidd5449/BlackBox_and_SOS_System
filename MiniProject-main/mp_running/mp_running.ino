@@ -6,6 +6,8 @@
 #include <Arduino_JSON.h>
 #include <Wire.h>
 #include <MPU6050.h>
+#include <SoftwareSerial.h>
+#include <TinyGPSPlus.h>
 
 // please enter your sensitive data in the Secret tab/arduino_secrets.h
 #include "arduino_secrets.h" 
@@ -13,6 +15,8 @@
 const int analogPinLM35 = A0;
 
 MPU6050 mpu;
+TinyGPSPlus gps;
+SoftwareSerial gsmSerial(7, 8);  // RX, TX for GSM
 
 char ssid[] = SECRET_SSID;        // your network SSID (name)
 char pass[] = SECRET_PASS;        // your network password (use for WPA, or use as key for WEP)
@@ -32,6 +36,7 @@ void setup() {
 
   //Initialize serial and wait for port to open:
   Serial.begin(9600);
+  gsmSerial.begin(9600);
 
   // check for the WiFi module:
   if (WiFi.status() == WL_NO_MODULE) {
@@ -109,7 +114,17 @@ void loop() {
     // No danger detected
     isDangerDetected = false;
   }
-  
+
+while (gsmSerial.available()) {
+  char c = gsmSerial.read();
+  Serial.write(c);
+}
+  // Read GPS data
+  float gpsLatitude, gpsLongitude;
+  if (readGPSData(gpsLatitude, gpsLongitude)) {
+    // GPS data is valid, use it as needed
+  }
+
   // Create a JSON object with the acceleration and gyroscope data, and the danger flag
   JSONVar data;  
   data["accX"]=accX;
@@ -122,6 +137,8 @@ void loop() {
   data["accStatus"] = accStatus;
   data["gyroStatus"] = gyroStatus;
   data["danger"] = isDangerDetected;
+  data["gpsLatitude"] = gpsLatitude;
+  data["gpsLongitude"] = gpsLongitude;
 
   // Convert the JSON object to a string
   String dataStr = JSON.stringify(data);
@@ -197,4 +214,17 @@ void printWifiStatus() {
   Serial.print("signal strength (RSSI):");
   Serial.print(rssi);
   Serial.println(" dBm");
+}
+
+bool readGPSData(float &latitude, float &longitude) {
+  while (gsmSerial.available()) {
+    if (gps.encode(gsmSerial.read())) {
+      if (gps.location.isValid()) {
+        latitude = gps.location.lat();
+        longitude = gps.location.lng();
+        return true; // GPS data is valid
+      }
+    }
+  }
+  return false; // GPS data is not valid or not available
 }
