@@ -6,6 +6,8 @@
 #include <Arduino_JSON.h>
 #include <Wire.h>
 #include <Adafruit_MPU6050.h>
+#include <SoftwareSerial.h>
+#include <TinyGPSPlus.h>
 #include <Adafruit_Sensor.h>
 #include <ArduinoHttpClient.h>
 // please enter your sensitive data in the Secret tab/arduino_secrets.h
@@ -14,6 +16,8 @@
 const int analogPinLM35 = A0;
 
 Adafruit_MPU6050 mpu;
+TinyGPSPlus gps;
+SoftwareSerial gsmSerial(7, 8);  // RX, TX for GSM
 
 char ssid[] = SECRET_SSID;        // your network SSID (name)
 char pass[] = SECRET_PASS;        // your network password (use for WPA, or use as key for WEP)
@@ -37,6 +41,7 @@ void setup() {
 
   //Initialize serial and wait for port to open:
   Serial.begin(9600);
+  gsmSerial.begin(9600);
 
   // check for the WiFi module:
   if (WiFi.status() == WL_NO_MODULE) {
@@ -108,16 +113,26 @@ void loop() {
  
 
   // Check if the acceleration or gyroscope values exceed certain thresholds
-  if (abs(accX) > 20 || abs(accY) > 20 || abs(accZ) > 20 || abs(gyX) > 100 || abs(gyY) > 100 || abs(gyZ) > 100) {
-    
-    // Danger detected
-    isDangerDetected = true;
-    
-  } else {
-    // No danger detected
-    isDangerDetected = false;
-  }
+if (abs(accX) > 20 || abs(accY) > 20 || abs(accZ) > 20 || abs(gyroX) > 100 || abs(gyroY) > 100 || abs(gyroZ) > 100) {
+  isDangerDetected = true;
   
+  // Send SMS
+  sendSMS("Emergency Detected!", "Location: Latitude, Longitude");
+} else {
+  isDangerDetected = false;
+}
+
+
+while (gsmSerial.available()) {
+  char c = gsmSerial.read();
+  Serial.write(c);
+}
+  // Read GPS data
+  float gpsLatitude, gpsLongitude;
+  if (readGPSData(gpsLatitude, gpsLongitude)) {
+    // GPS data is valid, use it as needed
+  }
+
   // Create a JSON object with the acceleration and gyroscope data, and the danger flag
   JSONVar data;  
   data["accX"]=accX;
@@ -130,6 +145,8 @@ void loop() {
   data["accStatus"] = accStatus;
   data["gyroStatus"] = gyroStatus;
   data["danger"] = isDangerDetected;
+  data["gpsLatitude"] = gpsLatitude;
+  data["gpsLongitude"] = gpsLongitude;
 
   // Convert the JSON object to a string
   String dataStr = JSON.stringify(data);
@@ -170,4 +187,30 @@ void printWifiStatus() {
   Serial.print("signal strength (RSSI):");
   Serial.print(rssi);
   Serial.println(" dBm");
+}
+
+bool readGPSData(float &latitude, float &longitude) {
+  while (gsmSerial.available()) {
+    if (gps.encode(gsmSerial.read())) {
+      if (gps.location.isValid()) {
+        latitude = gps.location.lat();
+        longitude = gps.location.lng();
+        return true; // GPS data is valid
+      }
+    }
+  }
+  return false; // GPS data is not valid or not available
+}
+
+void sendSMS(const char* phoneNumber, const char* message) {
+  gsmSerial.println("AT+CMGF=1");  // Set SMS mode to text
+  delay(1000);
+  gsmSerial.print("AT+CMGS=\"");
+  gsmSerial.print(phoneNumber);
+  gsmSerial.println("\"");
+  delay(1000);
+  gsmSerial.print(message);
+  delay(100);
+  gsmSerial.write(26);  // Send CTRL+Z to indicate the end of the message
+  delay(1000);
 }
