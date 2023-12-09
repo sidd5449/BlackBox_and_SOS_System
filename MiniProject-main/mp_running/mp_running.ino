@@ -113,11 +113,19 @@ void loop() {
  
 
   // Check if the acceleration or gyroscope values exceed certain thresholds
-if (abs(accX) > 20 || abs(accY) > 20 || abs(accZ) > 20 || abs(gyroX) > 100 || abs(gyroY) > 100 || abs(gyroZ) > 100) {
+if (abs(accX) > 20 || abs(accY) > 20 || abs(accZ) > 20 || abs(gyX) > 100 || abs(gyY) > 100 || abs(gyZ) > 100) {
   isDangerDetected = true;
-  
+Serial.println("Accident detected");  
+  float c1 = readGPSLat();
+  float  c2= readGPSLong();
+    
+  // char mystr[] = "Accident detected at https://www.google.com/maps/search/?api=1&query=";
+  // strcat(mystr, char(c1));
+  // strcat(mystr, "%2C");
+  // strcat(mystr, char(c2));
   // Send SMS
-  sendSMS("Emergency Detected!", "Location: Latitude, Longitude");
+  char mystr[] = "Ded";
+  sendSMS("+91-9146526676", mystr);
 } else {
   isDangerDetected = false;
 }
@@ -128,10 +136,10 @@ while (gsmSerial.available()) {
   Serial.write(c);
 }
   // Read GPS data
-  float gpsLatitude, gpsLongitude;
-  if (readGPSData(gpsLatitude, gpsLongitude)) {
-    // GPS data is valid, use it as needed
-  }
+  // float gpsLatitude, gpsLongitude;
+  // if (readGPSData(gpsLatitude, gpsLongitude)) {
+  //   // GPS data is valid, use it as needed
+  // }
 
   // Create a JSON object with the acceleration and gyroscope data, and the danger flag
   JSONVar data;  
@@ -145,8 +153,8 @@ while (gsmSerial.available()) {
   data["accStatus"] = accStatus;
   data["gyroStatus"] = gyroStatus;
   data["danger"] = isDangerDetected;
-  data["gpsLatitude"] = gpsLatitude;
-  data["gpsLongitude"] = gpsLongitude;
+  // data["gpsLatitude"] = gpsLatitude;
+  // data["gpsLongitude"] = gpsLongitude;
 
   // Convert the JSON object to a string
   String dataStr = JSON.stringify(data);
@@ -189,17 +197,29 @@ void printWifiStatus() {
   Serial.println(" dBm");
 }
 
-bool readGPSData(float &latitude, float &longitude) {
+float readGPSLat() {
+  float latitude;
   while (gsmSerial.available()) {
     if (gps.encode(gsmSerial.read())) {
       if (gps.location.isValid()) {
         latitude = gps.location.lat();
-        longitude = gps.location.lng();
-        return true; // GPS data is valid
+         // GPS data is valid
       }
     }
   }
-  return false; // GPS data is not valid or not available
+  return latitude;
+}
+float readGPSLong() {
+  float longitude;
+  while (gsmSerial.available()) {
+    if (gps.encode(gsmSerial.read())) {
+      if (gps.location.isValid()) {
+        longitude = gps.location.lng();
+         // GPS data is valid
+      }
+    }
+  }
+  return longitude;
 }
 
 void sendSMS(const char* phoneNumber, const char* message) {
